@@ -1,0 +1,14 @@
+{
+  "name": "per-bingo-engine",
+  "version": "1.0.0",
+  "description": "pervasive bingo engine api prototype",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bryan Sharpley",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
