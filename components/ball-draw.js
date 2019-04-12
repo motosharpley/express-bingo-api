@@ -6,34 +6,24 @@ function getNewBall() {
 let allBallsDrawn = new Array;
 
 function drawBall(){
-  
-  if(allBallsDrawn.length != 75){
-    let currentBall = getNewBall();
-    do {
-      currentBall = getNewBall();
-    } while (allBallsDrawn.includes(currentBall));
-  
-    return allBallsDrawn.push(currentBall);
-  } else {
-    alert("All Balls Have Been Drawn, Please Start New Game");
-  }
-  
+  let currentBall = getNewBall();
+  do {
+    currentBall = getNewBall();
+  } while (allBallsDrawn.includes(currentBall));
+
+  return allBallsDrawn.push(currentBall);  
 }
 
 // Draw intial 24 balls to start new game
 // adjust the length of loop to change number of balls used
 function interimGameDraw() {
-  if(allBallsDrawn.length < 48){
     for(let i=0; i<24; i++){
       drawBall();
     }
-  } else {
-    alert("Must draw next ball")
-  }
-
 }
 // end Game init ball draw
 
+// Draw all 75 balls for a bingo game
 function drawAllBalls() {
   for(i=0; i<75; i++) {
     drawBall();
