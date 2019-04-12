@@ -1,11 +1,13 @@
+const bingoCard = {};
+
 let usedCardNums = new Array(75);
-let currentCardArray = new Array();
+bingoCard.currentCardArray = new Array();
 
 function getNewNum() {
   return Math.floor((Math.random() * 15) + 1)
 }
 
-function anotherCard() {
+bingoCard.anotherCard = function() {
   for (var i = 0; i < usedCardNums.length; i++) {
     usedCardNums[i] = false;
   };
@@ -14,7 +16,7 @@ function anotherCard() {
   return false;
 }
 
-function newCard() {
+bingoCard.newCard = function() {
   for(var i=0 ; i<25 ; i++){
       setSquare(i);
     }
@@ -22,7 +24,7 @@ function newCard() {
 
 function setSquare(thisSquare){
   // let colPlace = new Array(0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4); // Row format
-  let colPlace = new Array(0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4); // Coloumn format
+  let colPlace = new Array(0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4); // Column format
 
   let colBasis = colPlace[thisSquare] * 15;
   let newNum = colBasis + getNewNum();
@@ -33,11 +35,7 @@ function setSquare(thisSquare){
   }while(usedCardNums[newNum]);
   
   usedCardNums[newNum] = true;
-  return currentCardArray.push(newNum);  
+  return bingoCard.currentCardArray.push(newNum);  
 }
 
-// newCard();
-// anotherCard();
-console.log(currentCardArray);
-console.log(currentCardArray.length);
-console.log(usedCardNums);
+module.exports = bingoCard;
