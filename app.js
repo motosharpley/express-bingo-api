@@ -1,5 +1,6 @@
 const express = require('express');
-const ballDraw = require('./components/ballDraw')
+const ballDraw = require('./components/ballDraw');
+const bingoCard = require('./components/bingoCard');
 
 const app = express();
 
@@ -16,4 +17,9 @@ app.get('/', (req, res) => {
 app.get('/ball-draw', (req, res) => {
   ballDraw.drawAllBalls();
   res.send(ballDraw.allBallsDrawn);
+});
+
+app.get('/bingo-card', (req, res) => {
+  bingoCard.newCard();
+  res.send(bingoCard.currentCardArray);
 });
