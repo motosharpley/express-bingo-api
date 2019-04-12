@@ -1,12 +1,12 @@
-let usedCardNums = new Array(76);
+let usedCardNums = new Array(75);
 let currentCardArray = new Array();
 
 function getNewNum() {
-  return Math.floor(Math.random() * 15);
+  return Math.floor((Math.random() * 15) + 1)
 }
 
 function anotherCard() {
-  for (var i = 1; i < usedCardNums.length; i++) {
+  for (var i = 0; i < usedCardNums.length; i++) {
     usedCardNums[i] = false;
   };
 
@@ -25,15 +25,19 @@ function setSquare(thisSquare){
   let colPlace = new Array(0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4); // Coloumn format
 
   let colBasis = colPlace[thisSquare] * 15;
-  let newNum = colBasis + getNewNum() + 1;
+  let newNum = colBasis + getNewNum();
 
 
   do{
-    newNum = colBasis + getNewNum() + 1;
+    newNum = colBasis + getNewNum();
   }while(usedCardNums[newNum]);
   
   usedCardNums[newNum] = true;
   return currentCardArray.push(newNum);  
 }
-newCard();
+
+// newCard();
+// anotherCard();
 console.log(currentCardArray);
+console.log(currentCardArray.length);
+console.log(usedCardNums);
