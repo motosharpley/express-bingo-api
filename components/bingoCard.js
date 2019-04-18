@@ -29,7 +29,6 @@ function setSquare(thisSquare){
   let colBasis = colPlace[thisSquare] * 15;
   let newNum = colBasis + getNewNum();
 
-
   do{
     newNum = colBasis + getNewNum();
   }while(usedCardNums[newNum]);
@@ -37,5 +36,6 @@ function setSquare(thisSquare){
   usedCardNums[newNum] = true;
   return bingoCard.currentCardArray.push(newNum);  
 }
+
 
 module.exports = bingoCard;
