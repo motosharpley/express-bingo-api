@@ -5,6 +5,7 @@ function getNewBall() {
 }
 
 ballDraw.allBallsDrawn = new Array;
+ballDraw.interimGameDraw = new Array;
 
 ballDraw.drawBall = function() {
   let currentBall = getNewBall();
@@ -17,9 +18,9 @@ ballDraw.drawBall = function() {
 
 // Draw intial 24 balls to start new game
 // adjust the length of loop to change number of balls used
-ballDraw.interimGameDraw = function() {
+ballDraw.drawInterimGame = function() {
     for(let i=0; i<24; i++){
-      ballDraw.drawBall();
+      ballDraw.interimGameDraw.push(ballDraw.allBallsDrawn[i])
     }
 }
 // end Game init ball draw
@@ -29,11 +30,13 @@ ballDraw.drawAllBalls = function() {
   for(i=0; i<75; i++) {
     ballDraw.drawBall();
   }
+  ballDraw.drawInterimGame();
 }
 
-// drawAllBalls();
+// ballDraw.drawAllBalls();
 // interimGameDraw();
 
-// console.log(allBallsDrawn);
+// console.log(ballDraw.allBallsDrawn);
+// console.log(ballDraw.interimGameDraw);
 
 module.exports = ballDraw;
