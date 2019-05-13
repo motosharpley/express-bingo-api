@@ -12,7 +12,7 @@ bingoCard.anotherCard = function() {
     usedCardNums[i] = false;
   };
 
-  newCard();
+  bingoCard.newCard();
   return false;
 }
 
