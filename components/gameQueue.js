@@ -1,38 +1,68 @@
 // Import modules
 const bingoCard = require('./bingoCard');
 const ballDraw = require('./ballDraw');
-
-// Draw all Balls
-const allBallsDrawn = ballDraw.allBallsDrawn;
-ballDraw.drawAllBalls();
-
-// Interim Game Draw
-const interimDraw = ballDraw.interimGameDraw;
-
-// generate player card
-const playerCard = bingoCard.currentCardArray;
-bingoCard.newCard();
-
+const cardBinary = require('./cardBinary');
+const patternEval = require('./patternEval');
 
 // ********* Build Game ***********
 
-// Initialize new game & build queue
+// Draw All Balls
+const allBallsDrawn = ballDraw.allBallsDrawn;
+ballDraw.drawAllBalls();
+// Interim Game Draw
+const interimDraw = ballDraw.interimGameDraw;
+
 const bingoGame = {
   allBallsDrawn: allBallsDrawn,
   interimDraw: interimDraw,
   gameId: 1,
-  players: {
-    playerCard,
-    prizeWon: 0,
-    bonusType: 0
-  }
+  gameCoverAll: false,
+  players: [
+    player = {
+      playerCard: null,
+      prizeWon: 0,
+      bonusType: 0,
+      playerCoverAll: false
+    },
+  ]
 };
 
+function newBingoGame(bingoGame, allBallsDrawn) {
 
 
-// Check interim prize win
+  // Initialize new game & build queue
+  console.log(bingoGame.gameCoverAll);
+  while (bingoGame.gameCoverAll === false) {
 
-// Check card for coverall == if no coverall get next card and add to game
-// if coverall end game
+    // generate player card
+    bingoCard.newCard();
+    const playerCard = bingoCard.currentCardArray;
+    // console.log(`player card: ${playerCard}`);
 
+    let player = {
+      playerCard: playerCard,
+      prizeWon: 0,
+      bonusType: 0,
+      playerCoverAll: false
+    };
+
+    //   // Check interim prize win
+    //   // checkWinPattern(cardBinary, patternBinary);
+
+    //   // Check card for coverall == if no coverall get next card and add to game
+    //   // if coverall end game
+    cardBinary.cardPatternBinary(playerCard, allBallsDrawn);
+    let playedCardBinary = cardBinary.currentCardBinary.reduce((accumulator, currentValue) => accumulator + currentValue);
+    if (patternEval.checkCoverall(playedCardBinary) === true) {
+      bingoGame.gameCoverAll = true;
+      player.playerCoverAll = true;
+    }
+    console.log(bingoGame.gameCoverAll);
+    bingoGame.players.push(player);
+  }
+  // return bingoGame;
+}
+
+newBingoGame(bingoGame, allBallsDrawn);
 console.log(bingoGame);
+
