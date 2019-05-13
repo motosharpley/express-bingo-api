@@ -1,11 +1,13 @@
-const bingoCard = require('./bingoCard');
-const ballDraw = require('./ballDraw');
+// const bingoCard = require('./bingoCard');
+// const ballDraw = require('./ballDraw');
 
-const allBallsDrawn = ballDraw.allBallsDrawn;
-ballDraw.drawAllBalls();
+// const allBallsDrawn = ballDraw.allBallsDrawn;
+// ballDraw.drawAllBalls();
 // Evaluate daubbed player card and determine winning interim prize pattern
 
 // let playerCard = cardBinary;
+
+const patternEval = {}
 
 const winningPatterns = [];
 
@@ -13,7 +15,22 @@ const winningPatterns = [];
 // Build array of matched winning patterns
 // return highest ranking pattern/prize amount & bonusType
 
-// let matchedPatterns = [];
+function checkWinPattern(cardBinary, patternBinary) {
+  let matchedPatterns = [];
+  for(i=0; i<cardBinary.length; i++) {
+    if(cardBinary[i] >= patternBinary[i]){
+      i++;
+      match = true;
+    } else {
+      return match = false;
+    }
+  } 
+  if(match === true) {
+    matchedPatterns.push(patternBinary);
+  }
+}
+
+
 // let playResult = {
 //   patternMatched: pattern,
 //   prizeWon: winAmount,
@@ -31,18 +48,20 @@ function getDrawIndex(cardIndex, allBallsDrawn){
   }
 }
 
-getDrawIndex(5, allBallsDrawn);
+// getDrawIndex(5, allBallsDrawn);
 
-console.log(drawArray);
+// console.log(drawArray);
 
 // cardPatternBinary(playerCard, drawArray);
-let playedCardBinary = cardBinary.reduce((accumulator, currentValue) => accumulator + currentValue ));
-function checkCoverall(playedCardBinary){
+// let playedCardBinary = cardBinary.reduce((accumulator, currentValue) => accumulator + currentValue );
+
+patternEval.checkCoverall = function(playedCardBinary){
   if(playedCardBinary === 25) {
-    console.log('Congrats you got a coverall');
+    // console.log('Congrats you got a coverall');
     return true;
   } else {
     return false;
-    // drawNextPlayerCard();
   }
 }
+
+module.exports = patternEval;
