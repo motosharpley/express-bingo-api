@@ -9,17 +9,18 @@
 
 const patternEval = {}
 
-const winningPatterns = [
-  [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0],
-  [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1],
-  [0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0],
-  [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0]
-];
-
+// ******** Check player card for interim prize wins ********
 // For Each winning pattern check if playerCard contains winnning pattern
 // Build array of matched winning patterns
 // return highest ranking pattern/prize amount & bonusType
-let matchedPatterns = [];
+
+let matchedPatterns = []; // convert to playResult object
+// let playResult = {
+//   patternMatched: pattern,
+//   prizeWon: winAmount,
+//   bonusType: bonusType
+// };
+
 patternEval.checkWinPattern = function (cardBinary, patternBinary) {
   let match = false;
   winningPatterns.forEach(pattern => {
@@ -45,20 +46,20 @@ patternEval.checkWinPattern = function (cardBinary, patternBinary) {
   });
 }
 
-let cardpattern = [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
-let pattern = [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
+// ****** dummy patterns for testing ******
+const winningPatterns = [
+  [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0],
+  [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1],
+  [0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0],
+  [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0]
+];
 
+let cardpattern = [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
 patternEval.checkWinPattern(cardpattern,winningPatterns);
 console.log(matchedPatterns);
-// let playResult = {
-//   patternMatched: pattern,
-//   prizeWon: winAmount,
-//   bonusType: bonusType
-// };
 
 
-// Check playerCard for cover all condition
-
+//  ***** get draw array for coverall comparison by card index *****
 patternEval.drawArray = new Array;
 
 patternEval.getDrawIndex = function(cardIndex, allBallsDrawn){
@@ -66,14 +67,15 @@ patternEval.getDrawIndex = function(cardIndex, allBallsDrawn){
     drawArray.push(allBallsDrawn[i]);
   }
 }
+// getDrawIndex(25, allBallsDrawn);
+// console.log(patternEval.drawArray);
 
-// getDrawIndex(5, allBallsDrawn);
 
-// console.log(drawArray);
-
+// ******* example get player card binary and reduce() *********
 // cardPatternBinary(playerCard, drawArray);
 // let playedCardBinary = cardBinary.reduce((accumulator, currentValue) => accumulator + currentValue );
 
+// ********* Check playerCard for cover all condition **********
 patternEval.checkCoverall = function(playedCardBinary){
   if(playedCardBinary === 25) {
     // console.log('Congrats you got a coverall');
