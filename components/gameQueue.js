@@ -28,8 +28,6 @@ const bingoGame = {
 };
 
 function newBingoGame(bingoGame, allBallsDrawn) {
-
-
   // Initialize new game & build queue
   console.log(bingoGame.gameCoverAll);
   while (bingoGame.gameCoverAll === false) {
@@ -44,13 +42,15 @@ function newBingoGame(bingoGame, allBallsDrawn) {
       prizeWon: 0,
       bonusType: 0,
       playerCoverAll: false
-    };
+    };    
 
-    //   // Check interim prize win
-    //   // checkWinPattern(cardBinary, patternBinary);
+    // Check interim prize win
+    cardBinary.cardPatternBinary(playerCard, interimDraw)
+    let interimCardBinary = cardBinary.currentCardBinary;
+    patternEval.checkWinPattern(interimCardBinary, patternBinary);
 
-    //   // Check card for coverall == if no coverall get next card and add to game
-    //   // if coverall end game
+    // Check card for coverall == if no coverall get next card and add to game
+    // if coverall end game
     cardBinary.cardPatternBinary(playerCard, allBallsDrawn);
     let playedCardBinary = cardBinary.currentCardBinary.reduce((accumulator, currentValue) => accumulator + currentValue);
     if (patternEval.checkCoverall(playedCardBinary) === true) {
