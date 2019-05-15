@@ -21,15 +21,15 @@ let matchedPatterns = []; // convert to playResult object
 //   bonusType: bonusType
 // };
 
-patternEval.checkWinPattern = function (cardBinary, patternBinary) {
+patternEval.checkWinPattern = function (cardBinary, patternsArr) {
   let match = false;
-  winningPatterns.forEach(pattern => {
+  patternsArr.forEach(pattern => {
     patternBinary = pattern;
 
     for (i = 0; i < cardBinary.length; i++) {
-      console.log('card ' + cardBinary[i]);
-      console.log('patt ' + patternBinary[i]);
-      console.log(cardBinary[i] >= patternBinary[i]);
+      // console.log('card ' + cardBinary[i]);
+      // console.log('patt ' + patternBinary[i]);
+      // console.log(cardBinary[i] >= patternBinary[i]);
       if (cardBinary[i] >= patternBinary[i]) {
         match = true;
       } else {
