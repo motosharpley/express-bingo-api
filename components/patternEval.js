@@ -9,28 +9,47 @@
 
 const patternEval = {}
 
-const winningPatterns = [];
+const winningPatterns = [
+  [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0],
+  [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1],
+  [0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0],
+  [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0]
+];
 
 // For Each winning pattern check if playerCard contains winnning pattern
 // Build array of matched winning patterns
 // return highest ranking pattern/prize amount & bonusType
+let matchedPatterns = [];
+patternEval.checkWinPattern = function (cardBinary, patternBinary) {
+  let match = false;
+  winningPatterns.forEach(pattern => {
+    patternBinary = pattern;
 
-function checkWinPattern(cardBinary, patternBinary) {
-  let matchedPatterns = [];
-  for(i=0; i<cardBinary.length; i++) {
-    if(cardBinary[i] >= patternBinary[i]){
-      i++;
-      match = true;
+    for (i = 0; i < cardBinary.length; i++) {
+      console.log('card ' + cardBinary[i]);
+      console.log('patt ' + patternBinary[i]);
+      console.log(cardBinary[i] >= patternBinary[i]);
+      if (cardBinary[i] >= patternBinary[i]) {
+        match = true;
+      } else {
+        match = false;
+        break;
+      }
+    }
+    if (match === true) {
+      matchedPatterns.push(patternBinary);
     } else {
       return match = false;
     }
-  } 
-  if(match === true) {
-    matchedPatterns.push(patternBinary);
-  }
+    console.log('match ' + match);
+  });
 }
 
+let cardpattern = [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
+let pattern = [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
 
+patternEval.checkWinPattern(cardpattern,winningPatterns);
+console.log(matchedPatterns);
 // let playResult = {
 //   patternMatched: pattern,
 //   prizeWon: winAmount,
@@ -40,9 +59,9 @@ function checkWinPattern(cardBinary, patternBinary) {
 
 // Check playerCard for cover all condition
 
-let drawArray = new Array;
+patternEval.drawArray = new Array;
 
-function getDrawIndex(cardIndex, allBallsDrawn){
+patternEval.getDrawIndex = function(cardIndex, allBallsDrawn){
   for(i=0; i<cardIndex; i++) {
     drawArray.push(allBallsDrawn[i]);
   }
