@@ -20,14 +20,7 @@ function newBingoGame() {
     interimDraw: interimDraw,
     gameId: 1,
     gameCoverAll: false,
-    players: [
-      player = {
-        playerCard: null,
-        prizeWon: 0,
-        bonusType: 0,
-        playerCoverAll: false
-      },
-    ]
+    players: []
   };
   let cardIndex = 25;
   while (bingoGame.gameCoverAll === false) {
@@ -37,13 +30,7 @@ function newBingoGame() {
     bingoCard.anotherCard();
     let playerCard = bingoCard.currentCardArray;
     console.log('player card:' + playerCard);
-
-    let player = { 
-      playerCard: playerCard,
-      prizeWon: 0,
-      bonusType: 0,
-      playerCoverAll: false
-    };
+    
 
     // Check interim prize win
     console.log('checking interim prize')
@@ -60,8 +47,17 @@ function newBingoGame() {
     patternEval.getDrawIndex(cardIndex, allBallsDrawn);
     let currentDrawArray = patternEval.drawArray;
     console.log(currentDrawArray.length);
+    console.log('currentDrawArray: ' + currentDrawArray);
     cardIndex++;
     console.log('cardIndex' + cardIndex);
+
+    let player = { 
+      playerCard: playerCard,
+      currentDrawArray: currentDrawArray,
+      prizeWon: 0,
+      bonusType: 0,
+      playerCoverAll: false
+    };
 
     cardBinary.cardPatternBinary(playerCard, currentDrawArray);
     let playedCardBinary = cardBinary.currentCardBinary;
