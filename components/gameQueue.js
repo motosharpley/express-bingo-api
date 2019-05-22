@@ -29,7 +29,7 @@ function newBingoGame() {
       },
     ]
   };
-  let cardIndex = 69;
+  let cardIndex = 25;
   while (bingoGame.gameCoverAll === false) {
 
     // generate player card
@@ -76,7 +76,7 @@ function newBingoGame() {
   }
   // return bingoGame;
   if(bingoGame.gameCoverAll === true){
-    console.log('bingo game: ' + bingoGame);
+    console.log(bingoGame);
   }
   
 }
