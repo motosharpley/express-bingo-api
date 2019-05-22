@@ -13,6 +13,7 @@ bingoCard.anotherCard = function() {
   };
 
   bingoCard.newCard();
+  // console.log(usedCardNums);
   return false;
 }
 
