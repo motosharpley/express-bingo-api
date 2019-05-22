@@ -47,7 +47,7 @@ patternEval.checkWinPattern = function (cardBinary, patternsArr) {
 }
 
 // ****** dummy patterns for testing ******
-const winningPatterns = [
+patternEval.winningPatterns = [
   [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0],
   [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1],
   [0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0],
@@ -55,8 +55,8 @@ const winningPatterns = [
 ];
 
 let cardpattern = [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
-patternEval.checkWinPattern(cardpattern,winningPatterns);
-console.log(matchedPatterns);
+// patternEval.checkWinPattern(cardpattern,winningPatterns);
+console.log('matched patterns: ' + matchedPatterns);
 
 
 //  ***** get draw array for coverall comparison by card index *****
@@ -64,7 +64,7 @@ patternEval.drawArray = new Array;
 
 patternEval.getDrawIndex = function(cardIndex, allBallsDrawn){
   for(i=0; i<cardIndex; i++) {
-    drawArray.push(allBallsDrawn[i]);
+    patternEval.drawArray.push(allBallsDrawn[i]);
   }
 }
 // getDrawIndex(25, allBallsDrawn);
@@ -73,12 +73,13 @@ patternEval.getDrawIndex = function(cardIndex, allBallsDrawn){
 
 // ******* example get player card binary and reduce() *********
 // cardPatternBinary(playerCard, drawArray);
-// let playedCardBinary = cardBinary.reduce((accumulator, currentValue) => accumulator + currentValue );
+// let playedCardBinary = cardBinary.currentCardBinary.reduce((accumulator, currentValue) => accumulator + currentValue );
 
 // ********* Check playerCard for cover all condition **********
 patternEval.checkCoverall = function(playedCardBinary){
+  playedCardBinary = playedCardBinary.reduce((accumulator, currentValue) => accumulator + currentValue );
   if(playedCardBinary === 25) {
-    // console.log('Congrats you got a coverall');
+    console.log('Congrats you got a coverall');
     return true;
   } else {
     return false;
