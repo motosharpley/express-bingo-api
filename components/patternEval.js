@@ -22,6 +22,7 @@ let matchedPatterns = []; // convert to playResult object
 // };
 
 patternEval.checkWinPattern = function (cardBinary, patternsArr) {
+  // console.log('checking interim wins');
   let match = false;
   patternsArr.forEach(pattern => {
     patternBinary = pattern;
@@ -39,10 +40,11 @@ patternEval.checkWinPattern = function (cardBinary, patternsArr) {
     }
     if (match === true) {
       matchedPatterns.push(patternBinary);
+      console.log('match ' + match);
     } else {
       return match = false;
     }
-    console.log('match ' + match);
+    
   });
 }
 
@@ -51,12 +53,17 @@ patternEval.winningPatterns = [
   [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0],
   [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1],
   [0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0],
-  [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0]
+  [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0],
+  [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
 let cardpattern = [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
 // patternEval.checkWinPattern(cardpattern,winningPatterns);
-console.log('matched patterns: ' + matchedPatterns);
+// console.log('matched patterns: ' + matchedPatterns);
 
 
 //  ***** get draw array for coverall comparison by card index *****
