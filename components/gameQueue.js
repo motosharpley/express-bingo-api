@@ -15,6 +15,7 @@ function newBingoGame() {
   // Interim Game Draw
   const interimDraw = ballDraw.interimGameDraw;
   // Initialize new game & build queue
+  // console.log(interimDraw[0]);
   const bingoGame = {
     allBallsDrawn: allBallsDrawn,
     interimDraw: interimDraw,
@@ -29,27 +30,30 @@ function newBingoGame() {
     bingoCard.currentCardArray = [];
     bingoCard.anotherCard();
     let playerCard = bingoCard.currentCardArray;
-    console.log('player card:' + playerCard);
+    console.log('player card: ' + playerCard);
     
 
     // Check interim prize win
-    console.log('checking interim prize')
+    // console.log('checking interim prize')
+    cardBinary.currentCardBinary = [];
     cardBinary.cardPatternBinary(playerCard, interimDraw)
     let interimCardBinary = cardBinary.currentCardBinary;
+    // console.log(interimDraw);
+    console.log(' interimCard: ' + interimCardBinary);
 
     patternEval.checkWinPattern(interimCardBinary, patternEval.winningPatterns);
     cardBinary.currentCardBinary=[];
     // Check card for coverall == if no coverall get next card and add to game
     // if coverall end game
-    console.log('checking coverall');
+    // console.log('checking coverall');
     
     patternEval.drawArray = [];
     patternEval.getDrawIndex(cardIndex, allBallsDrawn);
     let currentDrawArray = patternEval.drawArray;
-    console.log(currentDrawArray.length);
-    console.log('currentDrawArray: ' + currentDrawArray);
+    // console.log(currentDrawArray.length);
+    // console.log('currentDrawArray: ' + currentDrawArray);
     cardIndex++;
-    console.log('cardIndex' + cardIndex);
+    // console.log('cardIndex' + cardIndex);
 
     let player = { 
       playerCard: playerCard,
@@ -61,22 +65,21 @@ function newBingoGame() {
 
     cardBinary.cardPatternBinary(playerCard, currentDrawArray);
     let playedCardBinary = cardBinary.currentCardBinary;
-    console.log('playedCardBinary ' + playedCardBinary);
+    console.log('coverallCardBinary ' + playedCardBinary);
     if (patternEval.checkCoverall(playedCardBinary) === true) {
       bingoGame.gameCoverAll = true;
       player.playerCoverAll = true;
     }
-    console.log('game coverall ' + bingoGame.gameCoverAll);
+    // console.log('game coverall ' + bingoGame.gameCoverAll);
     bingoGame.players.push(player);
     
   }
   // return bingoGame;
   if(bingoGame.gameCoverAll === true){
-    console.log(bingoGame);
+    gameQueue.push(bingoGame);
   }
   
 }
 
 newBingoGame();
-
-
+// console.log(gameQueue);
