@@ -24,8 +24,9 @@ app.get('/bingo-card', (req, res) => {
   bingoCard.anotherCard();
   res.send(bingoCard.currentCardArray);
 });
-
-app.get('/bingo-game', (req, res) => {
-  gameQueue.newBingoGame();
-  res.send(gameQueue.games[0].players[30]);
+gameQueue.newBingoGame();
+let i = 0;
+app.get('/bingo-game', (req, res) => {  
+  res.send(gameQueue.games[0].players[i]);
+  i++
 });
