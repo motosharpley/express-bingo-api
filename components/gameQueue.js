@@ -4,11 +4,13 @@ const ballDraw = require('./ballDraw');
 const cardBinary = require('./cardBinary');
 const patternEval = require('./patternEval');
 
+const gameQueue = {}
+
 // ********* Build Game ***********
-let gameQueue = [];
+gameQueue.games = [];
 
 
-function newBingoGame() {
+ gameQueue.newBingoGame = function() {
   // Draw All Balls
   const allBallsDrawn = ballDraw.allBallsDrawn;
   ballDraw.drawAllBalls();
@@ -16,7 +18,7 @@ function newBingoGame() {
   const interimDraw = ballDraw.interimGameDraw;
   // Initialize new game & build queue
   // console.log(interimDraw[0]);
-  const bingoGame = {
+  const newGame = {
     allBallsDrawn: allBallsDrawn,
     interimDraw: interimDraw,
     gameId: 1,
@@ -24,7 +26,7 @@ function newBingoGame() {
     players: []
   };
   let cardIndex = 25;
-  while (bingoGame.gameCoverAll === false) {
+  while (newGame.gameCoverAll === false) {
 
     // generate player card
     bingoCard.currentCardArray = [];
@@ -34,7 +36,7 @@ function newBingoGame() {
     
 
     // Check interim prize win
-    // console.log('checking interim prize')
+    console.log('checking interim prize')
     cardBinary.currentCardBinary = [];
     cardBinary.cardPatternBinary(playerCard, interimDraw)
     let interimCardBinary = cardBinary.currentCardBinary;
@@ -45,15 +47,15 @@ function newBingoGame() {
     cardBinary.currentCardBinary=[];
     // Check card for coverall == if no coverall get next card and add to game
     // if coverall end game
-    // console.log('checking coverall');
+    console.log('checking coverall');
     
     patternEval.drawArray = [];
     patternEval.getDrawIndex(cardIndex, allBallsDrawn);
     let currentDrawArray = patternEval.drawArray;
     // console.log(currentDrawArray.length);
-    // console.log('currentDrawArray: ' + currentDrawArray);
+    console.log('currentDrawArray: ' + currentDrawArray);
     cardIndex++;
-    // console.log('cardIndex' + cardIndex);
+    console.log('cardIndex' + cardIndex);
 
     let player = { 
       playerCard: playerCard,
@@ -65,21 +67,22 @@ function newBingoGame() {
 
     cardBinary.cardPatternBinary(playerCard, currentDrawArray);
     let playedCardBinary = cardBinary.currentCardBinary;
-    console.log('coverallCardBinary ' + playedCardBinary);
+    console.log('coverallCardBinary: ' + playedCardBinary);
     if (patternEval.checkCoverall(playedCardBinary) === true) {
-      bingoGame.gameCoverAll = true;
+      newGame.gameCoverAll = true;
       player.playerCoverAll = true;
     }
-    // console.log('game coverall ' + bingoGame.gameCoverAll);
-    bingoGame.players.push(player);
+    console.log('game coverall ' + newGame.gameCoverAll);
+    newGame.players.push(player);
     
   }
   // return bingoGame;
-  if(bingoGame.gameCoverAll === true){
-    gameQueue.push(bingoGame);
+  if(newGame.gameCoverAll === true){
+    gameQueue.games.push(newGame);
   }
   
 }
 
-newBingoGame();
-// console.log(gameQueue);
+module.exports = gameQueue;
+// gameQueue.newBingoGame();
+console.log(gameQueue.games);
