@@ -1,6 +1,7 @@
 const express = require('express');
 const ballDraw = require('./components/ballDraw');
 const bingoCard = require('./components/bingoCard');
+const gameQueue = require('./components/gameQueue');
 
 const app = express();
 
@@ -20,6 +21,11 @@ app.get('/ball-draw', (req, res) => {
 });
 
 app.get('/bingo-card', (req, res) => {
-  bingoCard.newCard();
+  bingoCard.anotherCard();
   res.send(bingoCard.currentCardArray);
+});
+
+app.get('/bingo-game', (req, res) => {
+  gameQueue.newBingoGame();
+  res.send(gameQueue.games[0].players[30]);
 });
