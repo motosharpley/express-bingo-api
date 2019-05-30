@@ -31,7 +31,7 @@ gameQueue.games = [];
   while (newGame.gameCoverAll === false) {
 
     // generate player card
-    bingoCard.currentCardArray = [];
+    // bingoCard.currentCardArray = []; Moved this into anotherCard() function
     bingoCard.anotherCard();
     let playerCard = bingoCard.currentCardArray;
     // console.log('player card: ' + playerCard);
@@ -45,8 +45,9 @@ gameQueue.games = [];
     // console.log(interimDraw);
     // console.log(' interimCard: ' + interimCardBinary);
 
+    patternEval.matchedPatterns = [];
     patternEval.checkWinPattern(interimCardBinary, patternEval.winningPatterns);
-    cardBinary.currentCardBinary=[];
+    cardBinary.currentCardBinary = [];
     // Check card for coverall == if no coverall get next card and add to game
     // if coverall end game
     // console.log('checking coverall');
@@ -58,10 +59,12 @@ gameQueue.games = [];
     // console.log('currentDrawArray: ' + currentDrawArray);
     cardIndex++;
     // console.log('cardIndex' + cardIndex);
+    let matchedPatterns = patternEval.matchedPatterns;
 
     let player = { 
       playerCard: playerCard,
       currentDrawArray: currentDrawArray,
+      patternWon: matchedPatterns,
       prizeWon: 0,
       bonusType: 0,
       playerCoverAll: false
