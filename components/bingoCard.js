@@ -8,6 +8,7 @@ function getNewNum() {
 }
 
 bingoCard.anotherCard = function() {
+  bingoCard.currentCardArray = [];
   for (var i = 0; i < usedCardNums.length; i++) {
     usedCardNums[i] = false;
   };
