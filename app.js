@@ -32,6 +32,8 @@ app.get('/bingo-game', (req, res) => {
   i++
 });
 
+let g = 0
 app.get('/all-bingo-game', (req, res) => {  
-  res.send(gameQueue.games);
+  res.send(gameQueue.games[g]);
+  g++
 });
