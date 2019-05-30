@@ -14,7 +14,7 @@ const patternEval = {}
 // Build array of matched winning patterns
 // return highest ranking pattern/prize amount & bonusType
 
-let matchedPatterns = []; // convert to playResult object
+patternEval.matchedPatterns = []; // @TODO convert to playResult object
 // let playResult = {
 //   patternMatched: pattern,
 //   prizeWon: winAmount,
@@ -39,7 +39,7 @@ patternEval.checkWinPattern = function (cardBinary, patternsArr) {
       }
     }
     if (match === true) {
-      matchedPatterns.push(patternBinary);
+      patternEval.matchedPatterns.push(patternBinary);
       console.log('match ' + match);
     } else {
       return match = false;
