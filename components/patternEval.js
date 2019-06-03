@@ -22,6 +22,7 @@ patternEval.matchedPatterns = []; // @TODO convert to playResult object
 // };
 
 patternEval.checkWinPattern = function (cardBinary, patternsArr) {
+  patternEval.matchedPatterns = [];
   // console.log('checking interim wins');
   let match = false;
   patternsArr.forEach(pattern => {
