@@ -45,9 +45,9 @@ gameQueue.games = [];
     // console.log(interimDraw);
     console.log(' interimCard: ' + interimCardBinary);
 
-    patternEval.matchedPatterns = [];
+    // patternEval.matchedPatterns = []; moved to checkWinPattern function
     patternEval.checkWinPattern(interimCardBinary, patternEval.winningPatterns);
-    cardBinary.currentCardBinary = [];
+    // cardBinary.currentCardBinary = []; moved to cardPatternBinary
     // Check card for coverall == if no coverall get next card and add to game
     // if coverall end game
     // console.log('checking coverall');
