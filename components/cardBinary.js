@@ -16,7 +16,7 @@ const cardBinary = {};
 cardBinary.currentCardBinary = new Array;
 
 cardBinary.cardPatternBinary = function(currentCardArray, BallDraw) {
-  
+  cardBinary.currentCardBinary = [];
   currentCardArray.forEach(square => {
     if(BallDraw.includes(square)) {
       cardBinary.currentCardBinary.push(1);
