@@ -39,11 +39,11 @@ gameQueue.games = [];
 
     // Check interim prize win
     // console.log('checking interim prize')
-    cardBinary.currentCardBinary = [];
+    // cardBinary.currentCardBinary = []; moved to cardPatternBinary
     cardBinary.cardPatternBinary(playerCard, interimDraw)
     let interimCardBinary = cardBinary.currentCardBinary;
     // console.log(interimDraw);
-    // console.log(' interimCard: ' + interimCardBinary);
+    console.log(' interimCard: ' + interimCardBinary);
 
     patternEval.matchedPatterns = [];
     patternEval.checkWinPattern(interimCardBinary, patternEval.winningPatterns);
