@@ -17,7 +17,7 @@ gameQueue.games = [];
   let interimDraw = ballDraw.interimGameDraw;
   // Initialize new game & build queue
   // console.log(interimDraw[0]);
-  
+  // new change
   
   let newGame = {
     allBallsDrawn: allBallsDrawn,
