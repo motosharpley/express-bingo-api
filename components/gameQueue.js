@@ -52,6 +52,7 @@ gameQueue.games = [];
     // if coverall end game
     // console.log('checking coverall');
     
+    
     patternEval.drawArray = [];
     patternEval.getDrawIndex(cardIndex, allBallsDrawn);
     let currentDrawArray = patternEval.drawArray;
@@ -64,10 +65,19 @@ gameQueue.games = [];
     let player = { 
       playerCard: playerCard,
       currentDrawArray: currentDrawArray,
-      patternWon: matchedPatterns,
-      prizeWon: 0,
-      bonusType: 0,
-      playerCoverAll: false
+      patternWon: matchedPatterns, //patternEval.playResult.patternMatched
+      prizeWon: 0, //patternEval.playResult.prizeWon
+      bonusType: 0, //patternEval.playResult.bonusType
+      bonusWon: 1,
+      playerCoverAll: false,
+      // @TODO bonus play object???
+      // bonusPlay: {
+      //   playerCard: bonusPlayerCard,
+      //   patternWon: matchedPatterns, //patternEval.playResult.patternMatched
+      //   prizeWon: 0, //patternEval.playResult.prizeWon
+      //   bonusType: 0, //patternEval.playResult.bonusType
+      //   bonusWon: 0,
+      // }
     };
 
     cardBinary.cardPatternBinary(playerCard, currentDrawArray);
@@ -78,7 +88,41 @@ gameQueue.games = [];
       player.playerCoverAll = true;
     }
     // console.log('game coverall ' + newGame.gameCoverAll);
+   
+
+// ******* Bonus Play Handler ***********
+    // @TODO if player.bonusWon > 0 trigger bonus play request
+    if(player.bonusWon > 0){
+      bingoCard.anotherCard();
+      let bonusPlayerCard = bingoCard.currentCardArray;
+      let bonusPattern = [];
+      let bonusPlay = {
+        playerCard: bonusPlayerCard,
+        // bonusPatternWon: bonusPattern, //patternEval.playResult.patternMatched
+        prizeWon: 0, //patternEval.playResult.prizeWon
+        bonusType: 0, //patternEval.playResult.bonusType
+        bonusWon: 0,
+      }
+      
+      
+      // Get new binary for bonus card
+      cardBinary.cardPatternBinary(bonusPlayerCard, interimDraw)
+      let bonusCardBinary = cardBinary.currentCardBinary;
+      console.log(`bonuscardbinary: ${bonusCardBinary}`);
+      // check bonus card against bonus prize table
+      patternEval.checkWinPattern(bonusCardBinary, patternEval.winningPatterns);
+      bonusPlay.bonusPattern = patternEval.matchedPatterns;
+      console.log(`bonusPattern: ${bonusPattern}`);
+      player.bonusPlay = bonusPlay
+      
+    } else {
+      player.bonusPlay = null;
+      bonusPlayerCard = null;
+    }
     newGame.players.push(player);
+
+// ******* End Bonus Play Handler ***********
+    
     
   }
   // return bingoGame;

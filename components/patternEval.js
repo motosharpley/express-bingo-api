@@ -15,10 +15,12 @@ const patternEval = {}
 // return highest ranking pattern/prize amount & bonusType
 
 patternEval.matchedPatterns = []; // @TODO convert to playResult object
-// let playResult = {
-//   patternMatched: pattern,
-//   prizeWon: winAmount,
-//   bonusType: bonusType
+
+// patternEval.playResult = {
+//   patternMatched: patternEval.matchedPatterns,
+//   prizeWon: winAmount, // look up prize associated with win pattern
+//   bonusType: bonusType, // look up bonusType associated with win pattern
+//   bonusWon: bonusWon
 // };
 
 patternEval.checkWinPattern = function (cardBinary, patternsArr) {
@@ -42,6 +44,8 @@ patternEval.checkWinPattern = function (cardBinary, patternsArr) {
     if (match === true) {
       patternEval.matchedPatterns.push(patternBinary);
       console.log('match ' + match);
+      // Compose winning pattern object
+      
     } else {
       return match = false;
     }
@@ -50,6 +54,7 @@ patternEval.checkWinPattern = function (cardBinary, patternsArr) {
 }
 
 // ****** dummy patterns for testing ******
+//  @TODO Turn into indexes fetched from db prize tables
 patternEval.winningPatterns = [
   [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0],
   [0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1],
@@ -61,6 +66,15 @@ patternEval.winningPatterns = [
   [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],
   [1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0]
 ];
+
+// ***********@TODO create win object for check pattern result to pass to client *****
+// const winPatternObj = {
+// prize index?
+//   patternBinary: pattern,
+//   prizeWon: prizecred,
+//   bonusWon: bonusWon,
+//   bonusType: bonusType
+// }
 
 let cardpattern = [0,1,1,1,0,1,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0];
 // patternEval.checkWinPattern(cardpattern,winningPatterns);
