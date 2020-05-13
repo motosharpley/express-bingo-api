@@ -17,8 +17,8 @@ cardBinary.currentCardBinary = new Array;
 
 cardBinary.cardPatternBinary = function(currentCardArray, BallDraw) {
   cardBinary.currentCardBinary = [];
-  currentCardArray.forEach(square => {
-    if(BallDraw.includes(square)) {
+  currentCardArray.forEach(cardNum => {
+    if(BallDraw.includes(cardNum)) {
       cardBinary.currentCardBinary.push(1);
     } else {
       cardBinary.currentCardBinary.push(0);

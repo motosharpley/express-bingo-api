@@ -43,7 +43,7 @@ gameQueue.games = [];
     cardBinary.cardPatternBinary(playerCard, interimDraw)
     let interimCardBinary = cardBinary.currentCardBinary;
     // console.log(interimDraw);
-    console.log(' interimCard: ' + interimCardBinary);
+    // console.log(' interimCard: ' + interimCardBinary);
 
     // patternEval.matchedPatterns = []; moved to checkWinPattern function
     patternEval.checkWinPattern(interimCardBinary, patternEval.winningPatterns);
@@ -108,11 +108,11 @@ gameQueue.games = [];
       // Get new binary for bonus card
       cardBinary.cardPatternBinary(bonusPlayerCard, interimDraw)
       let bonusCardBinary = cardBinary.currentCardBinary;
-      console.log(`bonuscardbinary: ${bonusCardBinary}`);
+      // console.log(`bonuscardbinary: ${bonusCardBinary}`);
       // check bonus card against bonus prize table
       patternEval.checkWinPattern(bonusCardBinary, patternEval.winningPatterns);
       bonusPlay.bonusPattern = patternEval.matchedPatterns;
-      console.log(`bonusPattern: ${bonusPattern}`);
+      // console.log(`bonusPattern: ${bonusPattern}`);
       player.bonusPlay = bonusPlay
       
     } else {

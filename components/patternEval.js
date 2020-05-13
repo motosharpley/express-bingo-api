@@ -43,7 +43,7 @@ patternEval.checkWinPattern = function (cardBinary, patternsArr) {
     }
     if (match === true) {
       patternEval.matchedPatterns.push(patternBinary);
-      console.log('match ' + match);
+      // console.log('match ' + match);
       // Compose winning pattern object
       
     } else {
@@ -101,7 +101,7 @@ patternEval.getDrawIndex = function(cardIndex, allBallsDrawn){
 patternEval.checkCoverall = function(playedCardBinary){
   playedCardBinary = playedCardBinary.reduce((accumulator, currentValue) => accumulator + currentValue );
   if(playedCardBinary === 25) {
-    console.log('Congrats you got a coverall');
+    // console.log('Congrats you got a coverall');
     return true;
   } else {
     return false;
