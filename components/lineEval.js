@@ -41,6 +41,7 @@ const reelStrip_3 = [1, 7, 8, 7, 11, 2, 8, 1, 6, 3, 3, 3, 3, 3, 3, 6, 12, 8, 5, 
 const reelStrip_4 = [1, 6, 7, 6, 11, 8, 7, 1, 7, 3, 3, 3, 3, 3, 6, 8, 12, 7, 6, 7, 4, 4, 4, 4, 4, 8, 2, 8, 7, 8, 2, 8, 2, 6, 7, 6, 11, 4, 7, 1, 8, 4, 4, 4, 4, 4, 4, 6, 12, 8, 6, 7, 2, 8, 4, 7, 5, 5, 5, 5, 6, 8, 4, 8, 1, 6, 7, 6, 11, 4, 8, 2, 8, 3, 6, 8, 4, 6, 7, 6, 12, 7, 6, 7, 2, 2, 2, 2, 2, 8, 4, 8, 7, 8, 4, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8];
 const reelStrip_5 = [1, 7, 6, 7, 11, 8, 7, 6, 7, 4, 6, 8, 5, 6, 7, 6, 12, 4, 6, 7, 5, 5, 5, 5, 5, 8, 5, 8, 7, 8, 6, 8, 1, 7, 6, 7, 11, 6, 8, 6, 3, 3, 3, 3, 3, 6, 7, 6, 12, 6, 7, 6, 5, 8, 5, 5, 5, 5, 5, 8, 7, 8, 2, 8, 1, 8, 6, 7, 11, 6, 7, 3, 8, 4, 4, 4, 4, 4, 7, 6, 12, 8, 6, 7, 2, 2, 2, 2, 2, 8, 5, 8, 7, 8, 7, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8];
 
+
 const symbols = [1, 2, 3, 4, 5, 6, 7, 8, 11, 12];
 const numScatters = 2;
 let scatterSymbols = [11, 12];
@@ -54,8 +55,8 @@ let reelStops = [];
 lineEval.setReelResults = function () {
     // get reel stops
     // call rng and get number within range of reel strip length
-    reelStops = reelStop.getReelStopArray(0, 105, 5);
-    // console.log(reelStops);
+    reelStops = reelStop.getReelStopArray(0, reelStrip_1.length-4, 5);
+    console.log(reelStops);
     // set top line with symbols at index of rng result
     // for each column increment rng result and get symbol from reel strip at index of rng ++
     // reel 1
