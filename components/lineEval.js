@@ -43,18 +43,21 @@ const reelStrip_5 = [1, 7, 6, 7, 11, 8, 7, 6, 7, 4, 6, 8, 5, 6, 7, 6, 12, 4, 6, 
 
 const symbols = [1, 2, 3, 4, 5, 6, 7, 8, 11, 12];
 const numScatters = 2;
-let scatterSymbols = [11,12];
-
+let scatterSymbols = [11, 12];
 
 // ******* Begin Reel Stop & Reel Results  *******
-// get reel stops
-// call rng and get number within range of reel strip length
-let reelStops = reelStop.getReelStopArray(0,reelStrip_1.length-2,5);
+
 let reelResults = [];
+let reelStops = [];
+
 // TODO set number of reels and length of results dynamically
-// set top line with symbols at index of rng result
-// for each column increment rng result and get symbol from reel strip at index of rng ++
-function setReelResults(reelStops) {
+lineEval.setReelResults = function () {
+    // get reel stops
+    // call rng and get number within range of reel strip length
+    reelStops = reelStop.getReelStopArray(0, 105, 5);
+    // console.log(reelStops);
+    // set top line with symbols at index of rng result
+    // for each column increment rng result and get symbol from reel strip at index of rng ++
     // reel 1
     reelResults.push(reelStrip_1[reelStops[0]]);
     reelResults.push(reelStrip_1[reelStops[0] + 1]);
@@ -76,16 +79,20 @@ function setReelResults(reelStops) {
     reelResults.push(reelStrip_5[reelStops[4] + 1]);
     reelResults.push(reelStrip_5[reelStops[4] + 2]);
 
-    console.log("Reel Results: " + reelResults);
+    // console.log("Reel Results: " + reelResults);
 };
 // ******* End Reel Stop & Reel Results *******
 
 
 let line_win = 0;
-let spinResults = [];
+lineEval.spinResults = [];
 
-function checkLineWins() {
-
+lineEval.checkLineWins = function () {
+    reelResults = [];
+    reelStops = [];
+    lineEval.spinResults = [];
+    lineEval.setReelResults();
+    lineEval.spinResults.push(reelResults);
     let lineResults = [];
     // TODO symbols.length - number of scatters
     for (let i = 0; i < symbols.length - numScatters; i++) {
@@ -96,7 +103,7 @@ function checkLineWins() {
             for (let x = 0; x < lines[l][1].length; x++) {
                 // if there is a break in the symbols in line from left to right exit the loop
                 // the below logic also checks for wild -- the wild symbol must be 1st in the array -- multiple wilds will require addtional logic
-                if ((lines[l][1][x] == 1) && !((reelResults[x] == symbols[i]) || (reelResults[x] == symbols[0]))){
+                if ((lines[l][1][x] == 1) && !((reelResults[x] == symbols[i]) || (reelResults[x] == symbols[0]))) {
                     break;
                 }
                 else if ((lines[l][1][x] == 1) && ((reelResults[x] == symbols[i]) || (reelResults[x] == symbols[0]))) {
@@ -107,43 +114,46 @@ function checkLineWins() {
                 }
             }// ******* end of evaluation loop *******
             // this is a sanity check to prevent false positives on lines which contain wilds but don't have the current symbol present
-            if(!lineResults.includes(symbols[i])){
+            if (!lineResults.includes(symbols[i])) {
                 line_win = 0
             }
-            if (line_win > 1 ){
+            if (line_win > 1) {
                 // console.log(lines[l][0] + " had " + line_win + " hits of symbol: " + symbols[i]);
-                spinResults.push([symbols[i],lines[l][0],line_win])
+                lineEval.spinResults.push(["symbol",symbols[i], lines[l][0],"hit_count", line_win])
             }
             line_win = 0;
             // reset lineResults to prevent false positive from previous lines
             lineResults = [];
         }// ******* end of next line loop *******
     }// ******* end of next symbol loop *******
+    lineEval.checkScatters();
+
     console.log("Spin Results -->")
-    console.log(spinResults);
+    console.log(lineEval.spinResults);
 }
 
 
 // Scatters count in any position so no line check is required just total up how many there are
-function checkScatters(){
+lineEval.checkScatters = function () {
     let scatterCount = 0;
     // Check each scatter symbol
-    for(j=0; j< scatterSymbols.length; j++){
+    for (j = 0; j < scatterSymbols.length; j++) {
         // reset scatter count when checking the next symbol
         scatterCount = 0;
         // loop through the reel results and count how many times the scatter symbol occurs
-        for(i=0; i<reelResults.length; i++){
-            if(reelResults[i] == scatterSymbols[j]){
+        for (i = 0; i < reelResults.length; i++) {
+            if (reelResults[i] == scatterSymbols[j]) {
                 scatterCount++;
             }
         }
-        console.log("scatter Count: " + scatterCount + " scatter symbol: " + scatterSymbols[j]);
+        lineEval.spinResults.push(["scatter_symbol", scatterSymbols[j],scatterCount]);
+        // console.log("scatter Count: " + scatterCount + " scatter symbol: " + scatterSymbols[j]);
     }
 }
 
-setReelResults(reelStops);
-checkLineWins();
-checkScatters();
+// lineEval.setReelResults();
+lineEval.checkLineWins();
+// lineEval.checkScatters();
 
 
 module.exports = lineEval;
