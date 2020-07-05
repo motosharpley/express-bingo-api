@@ -1,5 +1,12 @@
+const reelStop = require('./reelStop');
+
 const lineEval = {};
 
+// example line 1
+// 000
+// 111
+// 000
+// binary as array = [0,1,0,0,1,0,0,1,0] --column wise representation
 const lines = [
     ["line_1", [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]],
     ["line_2", [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0]],
@@ -38,12 +45,15 @@ const symbols = [1, 2, 3, 4, 5, 6, 7, 8, 11, 12];
 const numScatters = 2;
 let scatterSymbols = [11,12];
 
+
+// ******* Begin Reel Stop & Reel Results  *******
+// get reel stops
+// call rng and get number within range of reel strip length
+let reelStops = reelStop.getReelStopArray(0,reelStrip_1.length-2,5);
 let reelResults = [];
-let reelStops = [3, 5, 100, 1, 36];
-
-let spinResults = [];
-
 // TODO set number of reels and length of results dynamically
+// set top line with symbols at index of rng result
+// for each column increment rng result and get symbol from reel strip at index of rng ++
 function setReelResults(reelStops) {
     // reel 1
     reelResults.push(reelStrip_1[reelStops[0]]);
@@ -68,8 +78,11 @@ function setReelResults(reelStops) {
 
     console.log("Reel Results: " + reelResults);
 };
+// ******* End Reel Stop & Reel Results *******
+
 
 let line_win = 0;
+let spinResults = [];
 
 function checkLineWins() {
 
@@ -106,6 +119,7 @@ function checkLineWins() {
             lineResults = [];
         }// ******* end of next line loop *******
     }// ******* end of next symbol loop *******
+    console.log("Spin Results -->")
     console.log(spinResults);
 }
 
