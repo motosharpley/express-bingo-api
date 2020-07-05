@@ -8,14 +8,16 @@ reelStop.getReelStop = function(minStop, maxStop) {
     return reelIndex;
 }
 
+reelStop.reelIndexArr = [];
+
 reelStop.getReelStopArray = function(minStop, maxStop, numReels) {
-    let reelIndexArr = [];
 
     for (let i=0; i<numReels; i++) {
         let currentIndex = reelStop.getReelStop(minStop,maxStop);
-        reelIndexArr.push(currentIndex);
-    }
-    return reelIndexArr;
+        reelStop.reelIndexArr.push(currentIndex);
+    }    
+    return reelStop.reelIndexArr;    
 }
+
 
 module.exports = reelStop;
