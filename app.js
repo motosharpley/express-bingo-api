@@ -3,6 +3,7 @@ const ballDraw = require('./components/ballDraw');
 const bingoCard = require('./components/bingoCard');
 const gameQueue = require('./components/gameQueue');
 const lineEval = require('./components/lineEval');
+const payEval = require('./components/payEval');
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.get('/all-bingo-game', (req, res) => {
 });
 
 app.get('/class-3', (req, res) => {
-  lineEval.checkLineWins();
+  // lineEval.checkLineWins();
+  payEval.creditsPerLine();
   res.send(lineEval.spinResults );
 });
