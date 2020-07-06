@@ -56,7 +56,7 @@ lineEval.setReelResults = function () {
     // get reel stops
     // call rng and get number within range of reel strip length
     reelStops = reelStop.getReelStopArray(0, reelStrip_1.length-4, 5);
-    console.log(reelStops);
+    // console.log(reelStops);
     // set top line with symbols at index of rng result
     // for each column increment rng result and get symbol from reel strip at index of rng ++
     // reel 1
@@ -86,13 +86,14 @@ lineEval.setReelResults = function () {
 
 
 let line_win = 0;
-lineEval.spinResults = [];
+lineEval.spinResults = []; // Spin Results data structure [[0index array contains reel results], [line wins][scatter wins]]
 
 lineEval.checkLineWins = function () {
     reelResults = [];
     reelStops = [];
     lineEval.spinResults = [];
     lineEval.setReelResults();
+    lineEval.spinResults.push(reelStops)
     lineEval.spinResults.push(reelResults);
     let lineResults = [];
     // TODO symbols.length - number of scatters
@@ -103,7 +104,7 @@ lineEval.checkLineWins = function () {
             // loop through each index of the current line and count how many of the current symbol or wild symbol are on that line continuously from left to right
             for (let x = 0; x < lines[l][1].length; x++) {
                 // if there is a break in the symbols in line from left to right exit the loop
-                // the below logic also checks for wild -- the wild symbol must be 1st in the array -- multiple wilds will require addtional logic
+                // the below logic also checks for wild -- the wild symbol must be 1st in the symbols definition array -- multiple wilds will require addtional logic
                 if ((lines[l][1][x] == 1) && !((reelResults[x] == symbols[i]) || (reelResults[x] == symbols[0]))) {
                     break;
                 }
@@ -129,8 +130,8 @@ lineEval.checkLineWins = function () {
     }// ******* end of next symbol loop *******
     lineEval.checkScatters();
 
-    console.log("Spin Results -->")
-    console.log(lineEval.spinResults);
+    // console.log("Spin Results -->")
+    // console.log(lineEval.spinResults);
 }
 
 
@@ -153,7 +154,7 @@ lineEval.checkScatters = function () {
 }
 
 // lineEval.setReelResults();
-lineEval.checkLineWins();
+// lineEval.checkLineWins();
 // lineEval.checkScatters();
 
 
