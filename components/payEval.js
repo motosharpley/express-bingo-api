@@ -11,3 +11,62 @@
 
 const lineEval = require('./lineEval');
 
+const payEval = {};
+
+payEval.creditsPerLine = function() {
+    lineEval.checkLineWins();
+    let linePay = 0;
+    for (i = 2; i < lineEval.spinResults.length; i++) {
+        linePay = 0;
+        let symbol = lineEval.spinResults[i][1];
+        let hitcount = lineEval.spinResults[i][4];
+
+        switch (symbol) {
+            case 1:
+                if (hitcount == 2) linePay = 10;
+                else if (hitcount == 3) linePay = 25;
+                else if (hitcount == 4) linePay = 100;
+                else if (hitcount == 5) linePay = 5000;
+                break;
+            case 2:
+                if (hitcount == 3) linePay = 10;
+                else if (hitcount == 4) linePay = 50;
+                else if (hitcount == 5) linePay = 300;
+                break;
+            case 3:
+                if (hitcount == 3) linePay = 10;
+                else if (hitcount == 4) linePay = 50;
+                else if (hitcount == 5) linePay = 300;
+                break;
+            case 4:
+                if (hitcount == 3) linePay = 10;
+                else if (hitcount == 4) linePay = 50;
+                else if (hitcount == 5) linePay = 300;
+                break;
+            case 5:
+                if (hitcount == 3) linePay = 10;
+                else if (hitcount == 4) linePay = 50;
+                else if (hitcount == 5) linePay = 300;
+                break;
+            case 6:
+                if (hitcount == 3) linePay = 5;
+                else if (hitcount == 4) linePay = 30;
+                else if (hitcount == 5) linePay = 150;
+                break;
+            case 7:
+                if (hitcount == 3) linePay = 5;
+                else if (hitcount == 4) linePay = 20;
+                else if (hitcount == 5) linePay = 100;
+                break;
+            case 8:
+                if (hitcount == 3) linePay = 5;
+                else if (hitcount == 4) linePay = 15;
+                else if (hitcount == 5) linePay = 100;
+                break;
+        }
+        lineEval.spinResults[i].push("line_pay", linePay);
+    }
+
+}
+
+module.exports = payEval;
