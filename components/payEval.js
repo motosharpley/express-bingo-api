@@ -16,6 +16,7 @@ const payEval = {};
 payEval.creditsPerLine = function() {
     lineEval.checkLineWins();
     let linePay = 0;
+    let winTotal = 0;
     for (i = 2; i < lineEval.spinResults.length; i++) {
         linePay = 0;
         let symbol = lineEval.spinResults[i][1];
@@ -65,8 +66,9 @@ payEval.creditsPerLine = function() {
                 break;
         }
         lineEval.spinResults[i].push("line_pay", linePay);
+        winTotal += linePay;
     }
-
+    lineEval.spinResults.push("win_total", winTotal);
 }
 
 module.exports = payEval;
