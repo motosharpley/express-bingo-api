@@ -11,8 +11,6 @@
 
 const lineEval = require('./lineEval');
 const fs = require('fs');
-const reelStop = require('./reelStop');
-const { spinResults } = require('./lineEval');
 
 const payEval = {};
 
@@ -75,16 +73,23 @@ payEval.creditsPerLine = function() {
     lineEval.spinResults.push(["win_total", winTotal]);
     
     // ******* Write Sample files for bingo *******
-    console.log(lineEval.spinResults[lineEval.spinResults.length-3]);
-    console.log(lineEval.spinResults[lineEval.spinResults.length-2]);
-    if (lineEval.spinResults[lineEval.spinResults.length-3][2] && lineEval.spinResults[lineEval.spinResults.length-2][2] < 3){
+    // console.log("pre check" + lineEval.spinResults[lineEval.spinResults.length-3]);
+    // console.log("pre check" +lineEval.spinResults[lineEval.spinResults.length-2]);
+    if (lineEval.spinResults[lineEval.spinResults.length-3][2] < 3 && lineEval.spinResults[lineEval.spinResults.length-2][2] < 3){
         let reelstopfile = lineEval.spinResults[0];
         let reelSTR = reelstopfile.join(' ');
         
-        let fileResults = `2*SPIN|${winTotal}$${reelSTR}\n`
+        let fileResults = `2*SPIN|${winTotal}$${reelSTR}\n`;
+        let pulltab = `basegame\t${winTotal}\n`;
         fs.writeFileSync(`./sampleFiles/${winTotal}.txt`,fileResults,{flag: "a+"}, (err) => {
             if (err) throw err; 
         })
+        fs.writeFileSync(`./sampleFiles/pulltab_detail/${winTotal}.txt`,pulltab,{flag: "a+"}, (err) => {
+            if (err) throw err; 
+        })
+    } else {
+        // console.log(lineEval.spinResults[lineEval.spinResults.length-3]);
+        // console.log(lineEval.spinResults[lineEval.spinResults.length-2]);
     }
     // ******* end write sample files *******
 }
