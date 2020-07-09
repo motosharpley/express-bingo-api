@@ -82,6 +82,7 @@ payEval.creditsPerLine = function() {
         }
         lineEval.spinResults[i].push("line_pay", linePay);
     }
+    // add up the final set of linePay values to get winTotal
     for(let x = 2; x<lineEval.spinResults.length-2; x++){
         winTotal += lineEval.spinResults[x][6]
     }
@@ -89,6 +90,7 @@ payEval.creditsPerLine = function() {
     // ******* Write Sample files for bingo *******
     // console.log("pre check" + lineEval.spinResults[lineEval.spinResults.length-3]);
     // console.log("pre check" +lineEval.spinResults[lineEval.spinResults.length-2]);
+    // Check for scatter wins to prevent writing bonus trigger results to base game result files
     if (lineEval.spinResults[lineEval.spinResults.length-3][2] < 3 && lineEval.spinResults[lineEval.spinResults.length-2][2] < 3){
         let reelstopfile = lineEval.spinResults[0];
         let reelSTR = reelstopfile.join(' ');
