@@ -18,11 +18,12 @@ payEval.creditsPerLine = function() {
     lineEval.checkLineWins();
     let linePay = 0;
     let winTotal = 0;
-    
+    //iterate through each line win array in the spinResults array and calculate pay based on symbol and hit count
     for (i = 2; i < lineEval.spinResults.length; i++) {
         linePay = 0;
         let symbol = lineEval.spinResults[i][1];
         let hitcount = lineEval.spinResults[i][4];
+        let currentLine = lineEval.spinResults[i][2];
 
         switch (symbol) {
             case 1:
@@ -67,11 +68,24 @@ payEval.creditsPerLine = function() {
                 else if (hitcount == 5) linePay = 100;
                 break;
         }
+        // CHECK FOR MULTIPLE WINS ON SAME LINE -- THIS IS AN EDGE CASE WHERE THE LINE STARTS WITH WILD SYMBOLS BUT COMPLETES A HIGHER VALUE SYMBOL WIN LATER ON IN LINE EVALUATION
+        for(let x = 2; x<lineEval.spinResults.length-3; x++){
+            if (lineEval.spinResults[x][2] == currentLine){
+                if(lineEval.spinResults[x][6] > linePay){
+                    linePay = 0;
+                }
+                else if(lineEval.spinResults[x][6] < linePay){
+                    lineEval.spinResults[x][6] = 0;
+                }
+                
+            }
+        }
         lineEval.spinResults[i].push("line_pay", linePay);
-        winTotal += linePay;
+    }
+    for(let x = 2; x<lineEval.spinResults.length-2; x++){
+        winTotal += lineEval.spinResults[x][6]
     }
     lineEval.spinResults.push(["win_total", winTotal]);
-    
     // ******* Write Sample files for bingo *******
     // console.log("pre check" + lineEval.spinResults[lineEval.spinResults.length-3]);
     // console.log("pre check" +lineEval.spinResults[lineEval.spinResults.length-2]);
