@@ -91,11 +91,12 @@ payEval.creditsPerLine = function() {
         winTotal += lineEval.spinResults[x][6]
     }
     lineEval.spinResults.push(["win_total", winTotal]);
+
     // ******* Write Sample files for bingo *******
-    // console.log("pre check" + lineEval.spinResults[lineEval.spinResults.length-3]);
-    // console.log("pre check" +lineEval.spinResults[lineEval.spinResults.length-2]);
+
     // Check for scatter wins to prevent writing bonus trigger results to base game result files
-    if(winTotal != 0 || winTotal != 5 || winTotal != 10 || winTotal != 15 || winTotal != 20){
+    // if(winTotal != 0 && winTotal != 5 && winTotal != 10 && winTotal != 15 && winTotal != 20 && winTotal != 25 && winTotal != 30){
+    if(winTotal > 270){
         if (lineEval.spinResults[lineEval.spinResults.length-3][2] < 3 && lineEval.spinResults[lineEval.spinResults.length-2][2] < 3){
             let reelstopfile = lineEval.spinResults[0];
             let reelSTR = reelstopfile.join(' ');
@@ -108,12 +109,9 @@ payEval.creditsPerLine = function() {
             fs.writeFileSync(`./sampleFiles/pulltab_detail/${winTotal}.txt`,pulltab,{flag: "a+"}, (err) => {
                 if (err) throw err; 
             })
-        } else {
-            // console.log(lineEval.spinResults[lineEval.spinResults.length-3]);
-            // console.log(lineEval.spinResults[lineEval.spinResults.length-2]);
         }
-        // ******* end write sample files *******
     }
+            // ******* end write sample files *******
 
 }
 
