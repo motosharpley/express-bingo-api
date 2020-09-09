@@ -7,6 +7,8 @@
 // *6* Chest	        Line	150	    30	    5	
 // *7* Tower	        Line	100	    20	    5	
 // *8* Brain	        Line	100	    15	    5	
+// *11* Pick Scat
+// *12* FS Scat
 
 
 const lineEval = require('./lineEval');
@@ -111,7 +113,7 @@ payEval.creditsPerLine = function() {
             })
         }
     }
-            // ******* end write sample files *******
+    // ******* end write sample files *******
 
 }
 
