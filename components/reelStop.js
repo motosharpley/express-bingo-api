@@ -10,10 +10,11 @@ reelStop.getReelStop = function(minStop, maxStop) {
 
 reelStop.reelIndexArr = [];
 
-reelStop.getReelStopArray = function(minStop, maxStop, numReels) {
+// TODO Handle Different Length ReelStrips
+reelStop.getReelStopArray = function(minStop, numReels) {
     reelStop.reelIndexArr = [];
-    for (let i=0; i<numReels; i++) {
-        let currentIndex = reelStop.getReelStop(minStop,maxStop);
+    for (let i=0; i<numReels.length; i++) {
+        let currentIndex = reelStop.getReelStop(minStop,numReels[i][1].length - 4);
         reelStop.reelIndexArr.push(currentIndex);
     }    
     return reelStop.reelIndexArr;    
