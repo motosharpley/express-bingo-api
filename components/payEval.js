@@ -17,7 +17,7 @@ const fs = require('fs');
 const payEval = {};
 
 payEval.creditsPerLine = function() {
-    lineEval.checkLineWins();
+    lineEval.checkLineWins(lineEval.reelStrips);
     let linePay = 0;
     let winTotal = 0;
     //iterate through each line win array in the spinResults array and calculate pay based on symbol and hit count

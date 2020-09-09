@@ -35,7 +35,7 @@ const lines = [
     ["line_25", [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1]]
 ]
 
-const reelStrips = [
+lineEval.reelStrips = [
     ["reelStrip_1", [1, 6, 4, 6, 11, 4, 6, 1, 6, 4, 4, 4, 4, 4, 6, 7, 12, 4, 6, 3, 3, 3, 3, 3, 7, 8, 7, 4, 4, 4, 4, 4, 4, 6, 1, 6, 11, 4, 7, 1, 6, 4, 6, 7, 4, 6, 2, 6, 12, 6, 5, 5, 5, 5, 5, 5, 6, 8, 4, 8, 6, 8, 6, 8, 1, 6, 4, 6, 11, 4, 6, 1, 6, 8, 6, 7, 4, 6, 3, 6, 12, 8, 6, 8, 2, 2, 2, 2, 2, 8, 4, 8, 4, 8, 4, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
     ["reelStrip_2", [1, 7, 5, 3, 11, 8, 7, 1, 7, 3, 3, 3, 3, 3, 3, 5, 12, 6, 4, 4, 4, 7, 5, 7, 5, 5, 5, 5, 5, 6, 5, 7, 1, 6, 7, 3, 11, 7, 3, 1, 8, 5, 5, 5, 5, 5, 7, 5, 12, 7, 5, 6, 3, 7, 3, 3, 3, 3, 3, 3, 7, 6, 5, 7, 1, 5, 2, 8, 11, 7, 8, 1, 7, 8, 3, 3, 3, 3, 3, 7, 12, 7, 5, 6, 2, 2, 2, 2, 2, 8, 5, 5, 5, 5, 5, 7, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
     ["reelStrip_3", [1, 7, 8, 7, 11, 2, 8, 1, 6, 3, 3, 3, 3, 3, 3, 6, 12, 8, 5, 7, 3, 8, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 3, 8, 1, 3, 8, 4, 4, 4, 4, 7, 6, 12, 7, 8, 2, 8, 2, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 6, 7, 1, 6, 8, 5, 5, 5, 5, 5, 6, 12, 7, 8, 7, 2, 2, 2, 2, 2, 8, 3, 8, 7, 8, 7, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
@@ -115,11 +115,12 @@ lineEval.dynamicSetReelResults = function (reels) {
 let line_win = 0;
 lineEval.spinResults = []; // Spin Results data structure [[0index array contains reel results], [line wins][scatter wins]]
 
-lineEval.checkLineWins = function () {
+lineEval.checkLineWins = function (reels) {
     reelResults = [];
     reelStops = [];
     lineEval.spinResults = [];
-    lineEval.setReelResults();
+    // lineEval.setReelResults();
+    lineEval.dynamicSetReelResults(reels)
     lineEval.spinResults.push(reelStops)
     lineEval.spinResults.push(reelResults);
     let lineResults = [];
