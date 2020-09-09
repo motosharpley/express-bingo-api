@@ -35,6 +35,16 @@ const lines = [
     ["line_25", [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1]]
 ]
 
+const reelStrips = [
+    ["reelStrip_1", [1, 6, 4, 6, 11, 4, 6, 1, 6, 4, 4, 4, 4, 4, 6, 7, 12, 4, 6, 3, 3, 3, 3, 3, 7, 8, 7, 4, 4, 4, 4, 4, 4, 6, 1, 6, 11, 4, 7, 1, 6, 4, 6, 7, 4, 6, 2, 6, 12, 6, 5, 5, 5, 5, 5, 5, 6, 8, 4, 8, 6, 8, 6, 8, 1, 6, 4, 6, 11, 4, 6, 1, 6, 8, 6, 7, 4, 6, 3, 6, 12, 8, 6, 8, 2, 2, 2, 2, 2, 8, 4, 8, 4, 8, 4, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
+    ["reelStrip_2", [1, 7, 5, 3, 11, 8, 7, 1, 7, 3, 3, 3, 3, 3, 3, 5, 12, 6, 4, 4, 4, 7, 5, 7, 5, 5, 5, 5, 5, 6, 5, 7, 1, 6, 7, 3, 11, 7, 3, 1, 8, 5, 5, 5, 5, 5, 7, 5, 12, 7, 5, 6, 3, 7, 3, 3, 3, 3, 3, 3, 7, 6, 5, 7, 1, 5, 2, 8, 11, 7, 8, 1, 7, 8, 3, 3, 3, 3, 3, 7, 12, 7, 5, 6, 2, 2, 2, 2, 2, 8, 5, 5, 5, 5, 5, 7, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
+    ["reelStrip_3", [1, 7, 8, 7, 11, 2, 8, 1, 6, 3, 3, 3, 3, 3, 3, 6, 12, 8, 5, 7, 3, 8, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 3, 8, 1, 3, 8, 4, 4, 4, 4, 7, 6, 12, 7, 8, 2, 8, 2, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 6, 7, 1, 6, 8, 5, 5, 5, 5, 5, 6, 12, 7, 8, 7, 2, 2, 2, 2, 2, 8, 3, 8, 7, 8, 7, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
+    ["reelStrip_4", [1, 6, 7, 6, 11, 8, 7, 1, 7, 3, 3, 3, 3, 3, 6, 8, 12, 7, 6, 7, 4, 4, 4, 4, 4, 8, 2, 8, 7, 8, 2, 8, 2, 6, 7, 6, 11, 4, 7, 1, 8, 4, 4, 4, 4, 4, 4, 6, 12, 8, 6, 7, 2, 8, 4, 7, 5, 5, 5, 5, 6, 8, 4, 8, 1, 6, 7, 6, 11, 4, 8, 2, 8, 3, 6, 8, 4, 6, 7, 6, 12, 7, 6, 7, 2, 2, 2, 2, 2, 8, 4, 8, 7, 8, 4, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
+    ["reelStrip_5", [1, 7, 6, 7, 11, 8, 7, 6, 7, 4, 6, 8, 5, 6, 7, 6, 12, 4, 6, 7, 5, 5, 5, 5, 5, 8, 5, 8, 7, 8, 6, 8, 1, 7, 6, 7, 11, 6, 8, 6, 3, 3, 3, 3, 3, 6, 7, 6, 12, 6, 7, 6, 5, 8, 5, 5, 5, 5, 5, 8, 7, 8, 2, 8, 1, 8, 6, 7, 11, 6, 7, 3, 8, 4, 4, 4, 4, 4, 7, 6, 12, 8, 6, 7, 2, 2, 2, 2, 2, 8, 5, 8, 7, 8, 7, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]]
+];
+
+const fsReelStrips = [];
+
 const reelStrip_1 = [1, 6, 4, 6, 11, 4, 6, 1, 6, 4, 4, 4, 4, 4, 6, 7, 12, 4, 6, 3, 3, 3, 3, 3, 7, 8, 7, 4, 4, 4, 4, 4, 4, 6, 1, 6, 11, 4, 7, 1, 6, 4, 6, 7, 4, 6, 2, 6, 12, 6, 5, 5, 5, 5, 5, 5, 6, 8, 4, 8, 6, 8, 6, 8, 1, 6, 4, 6, 11, 4, 6, 1, 6, 8, 6, 7, 4, 6, 3, 6, 12, 8, 6, 8, 2, 2, 2, 2, 2, 8, 4, 8, 4, 8, 4, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8];
 const reelStrip_2 = [1, 7, 5, 3, 11, 8, 7, 1, 7, 3, 3, 3, 3, 3, 3, 5, 12, 6, 4, 4, 4, 7, 5, 7, 5, 5, 5, 5, 5, 6, 5, 7, 1, 6, 7, 3, 11, 7, 3, 1, 8, 5, 5, 5, 5, 5, 7, 5, 12, 7, 5, 6, 3, 7, 3, 3, 3, 3, 3, 3, 7, 6, 5, 7, 1, 5, 2, 8, 11, 7, 8, 1, 7, 8, 3, 3, 3, 3, 3, 7, 12, 7, 5, 6, 2, 2, 2, 2, 2, 8, 5, 5, 5, 5, 5, 7, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8];
 const reelStrip_3 = [1, 7, 8, 7, 11, 2, 8, 1, 6, 3, 3, 3, 3, 3, 3, 6, 12, 8, 5, 7, 3, 8, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 3, 8, 1, 3, 8, 4, 4, 4, 4, 7, 6, 12, 7, 8, 2, 8, 2, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 6, 7, 1, 6, 8, 5, 5, 5, 5, 5, 6, 12, 7, 8, 7, 2, 2, 2, 2, 2, 8, 3, 8, 7, 8, 7, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8];
@@ -52,10 +62,13 @@ let reelResults = [];
 let reelStops = [];
 
 // TODO set number of reels and length of results dynamically
+// TODO check each reelstop for end of reel strip location and loop back to beginning with incremented stops if at end of reel strip
+// TODO Handle use of FreeSpin reel strips
 lineEval.setReelResults = function () {
     // get reel stops
     // call rng and get number within range of reel strip length
     reelStops = reelStop.getReelStopArray(0, reelStrip_1.length-4, 5);
+    // reelStops = [5, 5, 93, 92, 39];
     // console.log(reelStops);
     // set top line with symbols at index of rng result
     // for each column increment rng result and get symbol from reel strip at index of rng ++
@@ -82,6 +95,20 @@ lineEval.setReelResults = function () {
 
     // console.log("Reel Results: " + reelResults);
 };
+
+lineEval.dynamicSetReelResults = function (reels) {
+    reelStops = reelStop.getReelStopArray(0, reelStrip_1.length-4, 5);
+    for(let i=0; i< reels.length; i++){
+        reelResults.push(reels[i][1][reelStops[i]]);
+        reelResults.push(reels[i][1][reelStops[i] + 1]);
+        reelResults.push(reels[i][1][reelStops[i] + 2]);
+    }
+    console.log(reelStops);
+    console.log(reelResults);
+
+}
+
+// lineEval.dynamicSetReelResults(reelStrips);
 // ******* End Reel Stop & Reel Results *******
 
 
@@ -136,6 +163,7 @@ lineEval.checkLineWins = function () {
 
 
 // Scatters count in any position so no line check is required just total up how many there are
+// TODO handle scatter hits for Freespin and bonus triggers
 lineEval.checkScatters = function () {
     let scatterCount = 0;
     // Check each scatter symbol
