@@ -35,12 +35,22 @@ const lines = [
     ["line_25", [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1]]
 ]
 
+const W_01 = 1;
+const S_02 = 2;
+const S_03 = 3;
+const S_04 = 4;
+const S_05 = 5;
+const S_06 = 6;
+const S_07 = 7;
+const S_08 = 8;
+const SC_1 = 9;
+
 lineEval.reelStrips = [
-    ["reelStrip_1", [1, 6, 4, 6, 11, 4, 6, 1, 6, 4, 4, 4, 4, 4, 6, 7, 12, 4, 6, 3, 3, 3, 3, 3, 7, 8, 7, 4, 4, 4, 4, 4, 4, 6, 1, 6, 11, 4, 7, 1, 6, 4, 6, 7, 4, 6, 2, 6, 12, 6, 5, 5, 5, 5, 5, 5, 6, 8, 4, 8, 6, 8, 6, 8, 1, 6, 4, 6, 11, 4, 6, 1, 6, 8, 6, 7, 4, 6, 3, 6, 12, 8, 6, 8, 2, 2, 2, 2, 2, 8, 4, 8, 4, 8, 4, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
-    ["reelStrip_2", [1, 7, 5, 3, 11, 8, 7, 1, 7, 3, 3, 3, 3, 3, 3, 5, 12, 6, 4, 4, 4, 7, 5, 7, 5, 5, 5, 5, 5, 6, 5, 7, 1, 6, 7, 3, 11, 7, 3, 1, 8, 5, 5, 5, 5, 5, 7, 5, 12, 7, 5, 6, 3, 7, 3, 3, 3, 3, 3, 3, 7, 6, 5, 7, 1, 5, 2, 8, 11, 7, 8, 1, 7, 8, 3, 3, 3, 3, 3, 7, 12, 7, 5, 6, 2, 2, 2, 2, 2, 8, 5, 5, 5, 5, 5, 7, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
-    ["reelStrip_3", [1, 7, 8, 7, 11, 2, 8, 1, 6, 3, 3, 3, 3, 3, 3, 6, 12, 8, 5, 7, 3, 8, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 3, 8, 1, 3, 8, 4, 4, 4, 4, 7, 6, 12, 7, 8, 2, 8, 2, 4, 7, 2, 2, 2, 2, 2, 7, 3, 8, 1, 7, 8, 7, 11, 6, 7, 1, 6, 8, 5, 5, 5, 5, 5, 6, 12, 7, 8, 7, 2, 2, 2, 2, 2, 8, 3, 8, 7, 8, 7, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
-    ["reelStrip_4", [1, 6, 7, 6, 11, 8, 7, 1, 7, 3, 3, 3, 3, 3, 6, 8, 12, 7, 6, 7, 4, 4, 4, 4, 4, 8, 2, 8, 7, 8, 2, 8, 2, 6, 7, 6, 11, 4, 7, 1, 8, 4, 4, 4, 4, 4, 4, 6, 12, 8, 6, 7, 2, 8, 4, 7, 5, 5, 5, 5, 6, 8, 4, 8, 1, 6, 7, 6, 11, 4, 8, 2, 8, 3, 6, 8, 4, 6, 7, 6, 12, 7, 6, 7, 2, 2, 2, 2, 2, 8, 4, 8, 7, 8, 4, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]],
-    ["reelStrip_5", [1, 7, 6, 7, 11, 8, 7, 6, 7, 4, 6, 8, 5, 6, 7, 6, 12, 4, 6, 7, 5, 5, 5, 5, 5, 8, 5, 8, 7, 8, 6, 8, 1, 7, 6, 7, 11, 6, 8, 6, 3, 3, 3, 3, 3, 6, 7, 6, 12, 6, 7, 6, 5, 8, 5, 5, 5, 5, 5, 8, 7, 8, 2, 8, 1, 8, 6, 7, 11, 6, 7, 3, 8, 4, 4, 4, 4, 4, 7, 6, 12, 8, 6, 7, 2, 2, 2, 2, 2, 8, 5, 8, 7, 8, 7, 8, 1, 11, 2, 3, 12, 4, 5, 11, 6, 7, 12, 8]]
+    ["reelStrip_1", [S_03,SC_1,S_07,S_05,S_03,S_08,S_03,S_07,S_04,S_07,S_04,S_07,S_05,S_04,W_01,S_05,S_02,S_06,S_04,S_08,S_07,SC_1,S_07,S_02,S_04,S_03,S_07,S_06,S_03,S_06,S_04,S_06,W_01,S_02,S_07,W_01,S_04,S_02,S_06,S_05,S_03,SC_1]],
+    ["reelStrip_2", [S_05,S_07,S_02,S_07,S_08,S_07,S_02,S_05,S_08,S_05,S_08,S_05,S_03,S_05,W_01,S_07,S_08,S_02,S_05,SC_1,S_07,S_05,SC_1,S_08,S_06,S_08,S_05,S_08,S_06,W_01,S_07,S_05,S_07,S_02,S_07,S_08,S_04,S_05,S_07,SC_1,S_05,S_07]],
+    ["reelStrip_3", [S_03,S_08,S_06,S_02,S_04,S_06,S_04,S_06,S_05,S_06,S_04,S_08,S_07,S_04,S_07,S_08,S_03,S_04,S_08,S_05,S_08,S_03,S_08,S_07,S_08,S_03,S_08,SC_1,S_06,S_04,S_06,S_03,S_06,S_07,W_01,S_06,S_08,S_04,S_08,S_06,S_03,S_08]],
+    ["reelStrip_4", [S_07,S_02,S_05,S_02,S_08,S_03,S_02,S_04,S_03,S_04,S_05,S_04,S_03,S_05,S_02,S_05,S_02,S_06,W_01,S_04,S_07,S_02,S_07,S_08,W_01,S_08,S_02,S_08,SC_1,S_06,S_02,S_06,S_03,S_06,S_07,S_03,S_07,S_06,S_03,S_05,S_07,S_02]],
+    ["reelStrip_5", [S_05,S_03,S_06,S_04,W_01,S_05,S_07,S_03,S_08,S_07,S_03,S_02,S_05,S_08,S_04,S_02,S_06,S_05,S_03,S_08,S_02,S_06,S_07,S_04,S_05,S_06,S_04,S_08,S_03,SC_1,S_08,S_07,S_05,S_02,S_07,S_04,S_06,S_05,S_04,S_07,S_05,S_03]]
 ];
 
 lineEval.fsReelStrips = [
@@ -52,9 +62,9 @@ lineEval.fsReelStrips = [
 ];
 
 
-const symbols = [1, 2, 3, 4, 5, 6, 7, 8, 11, 12];
-const numScatters = 2;
-let scatterSymbols = [11, 12];
+const symbols = [W_01,S_02,S_03,S_04,S_05,S_06,S_07,S_08,SC_1];
+const numScatters = 1;
+let scatterSymbols = [SC_1];
 
 // ******* Begin Reel Stop & Reel Results  *******
 
@@ -97,7 +107,9 @@ lineEval.setReelResults = function () {
 };
 
 lineEval.dynamicSetReelResults = function (reels) {
-    // TODO Handle different length reelstrips
+    reelResults = [];//clear previous results
+    reelStops = [];//clear previous results
+    
     reelStops = reelStop.getReelStopArray(0, reels);
     for(let i=0; i< reels.length; i++){
         reelResults.push(reels[i][1][reelStops[i]]);
@@ -113,8 +125,6 @@ let line_win = 0;
 lineEval.spinResults = []; // Spin Results data structure [[0index array contains reel results], [line wins][scatter wins]]
 
 lineEval.checkLineWins = function (reels) {
-    reelResults = [];
-    reelStops = [];
     lineEval.spinResults = [];
     // lineEval.setReelResults();
     lineEval.dynamicSetReelResults(reels)
@@ -175,6 +185,27 @@ lineEval.checkScatters = function () {
         lineEval.spinResults.push(["scatter_symbol", scatterSymbols[j],scatterCount]);
         // console.log("scatter Count: " + scatterCount + " scatter symbol: " + scatterSymbols[j]);
     }
+}
+
+
+lineEval.spinTillYouWin = function (reels) {
+    // center symbol sticks wild and respins until prize is won
+    let isWildtrue;
+    if(reelResults[7] == wild){
+        isWildtrue = true;
+    } else {
+        isWildtrue = false;
+    }
+    
+    while (isWildtrue){
+        
+        while ( lineEval.spinResults.indexOf("win_total")+1 <= 0){
+            reelResults[7] == wild;
+            lineEval.checkLineWins(reels);// TODO handle overwriting center wild in reelResults during check line wins
+
+        }
+    }
+
 }
 
 
