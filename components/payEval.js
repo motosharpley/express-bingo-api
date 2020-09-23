@@ -71,7 +71,7 @@ payEval.creditsPerLine = function() {
                 break;
         }
         // CHECK FOR MULTIPLE WINS ON SAME LINE -- THIS IS AN EDGE CASE WHERE THE LINE STARTS WITH WILD SYMBOLS BUT COMPLETES A HIGHER VALUE SYMBOL WIN LATER ON IN LINE EVALUATION
-        for(let x = 2; x<lineEval.spinResults.length-3; x++){
+        for(let x = 2; x<lineEval.spinResults.length-2; x++){
             if (lineEval.spinResults[x][2] == currentLine){
                 if(lineEval.spinResults[x][6] > linePay){
                     linePay = 0;
