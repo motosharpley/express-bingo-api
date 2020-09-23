@@ -54,11 +54,11 @@ lineEval.reelStrips = [
 ];
 
 lineEval.fsReelStrips = [
-    ["fsReelStrip1",[]],
-    ["fsReelStrip1",[]],
-    ["fsReelStrip1",[]],
-    ["fsReelStrip1",[]],
-    ["fsReelStrip1",[]]
+    ["fsReelStrip1",[S_07,S_06,W_01,S_08,S_03,S_02,S_07,S_08,S_05,S_02,S_08,S_07,S_06,S_08,S_04,S_06,S_08,S_07,S_02,S_03,S_08,S_06,W_01,S_03,S_07,S_06,S_03,S_08,W_01,S_07,S_06,S_08,S_03,S_07,S_06,S_05,S_08,S_02,S_04,S_03,S_07,S_06]],
+    ["fsReelStrip1",[S_03,S_04,S_06,S_08,S_07,S_04,S_06,S_08,W_01,S_07,S_08,S_04,S_06,S_08,S_04,S_05,S_07,S_06,S_08,S_07,S_06,S_08,S_07,S_06,S_08,S_02,S_04,S_08,S_06,S_07,S_08,S_03,S_04,S_08,W_01,S_06,S_05,S_04,S_08,S_06,S_03,S_04]],
+    ["fsReelStrip1",[S_07,S_06,S_05,S_07,S_08,S_05,S_04,S_07,W_01,S_05,S_08,S_07,S_04,S_05,W_01,S_07,S_05,S_03,W_01,S_05,S_08,S_07,S_05,S_08,S_07,S_02,S_05,S_04,S_07,S_02,S_06,S_08,S_05,S_04,S_06,S_07,S_08,S_02,S_06,S_05,S_07,S_06]],
+    ["fsReelStrip1",[S_05,W_01,S_04,S_03,S_06,S_05,S_02,W_01,S_05,S_08,S_06,S_03,S_02,S_07,S_04,S_06,S_03,S_04,S_05,S_03,S_06,S_04,S_08,S_07,S_05,S_06,S_07,S_05,S_06,S_07,S_08,S_05,S_03,S_07,S_05,S_06,S_07,S_05,S_03,S_07,S_05,W_01]],
+    ["fsReelStrip1",[S_02,S_03,S_04,S_02,S_08,S_06,S_04,S_05,S_02,S_08,S_03,S_07,S_03,S_04,S_08,W_01,S_05,S_03,S_04,S_05,S_08,S_02,S_05,S_08,S_02,S_05,S_08,S_06,S_02,S_04,S_08,S_03,S_05,S_08,S_06,S_02,S_07,W_01,S_05,S_04,S_02,S_03]]
 ];
 
 
@@ -184,6 +184,20 @@ lineEval.checkScatters = function () {
         }
         lineEval.spinResults.push(["scatter_symbol", scatterSymbols[j],scatterCount]);
         // console.log("scatter Count: " + scatterCount + " scatter symbol: " + scatterSymbols[j]);
+        if (scatterCount >2){
+            switch (scatterCount) {
+                case 3: 
+                console.log("3scatters");
+                break;
+                case 4: 
+                console.log("4scatters");
+                break;
+                case 5: 
+                console.log("5scatters");
+                break;
+            }
+
+        }
     }
 }
 
