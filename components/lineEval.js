@@ -1,4 +1,5 @@
 const reelStop = require('./reelStop');
+const RNG = require('./RNG');
 
 const lineEval = {};
 
@@ -46,23 +47,23 @@ const S_08 = 8;
 const SC_1 = 9;
 
 lineEval.reelStrips = [
-    ["reelStrip_1", [S_03,SC_1,S_07,S_05,S_03,S_08,S_03,S_07,S_04,S_07,S_04,S_07,S_05,S_04,W_01,S_05,S_02,S_06,S_04,S_08,S_07,SC_1,S_07,S_02,S_04,S_03,S_07,S_06,S_03,S_06,S_04,S_06,W_01,S_02,S_07,W_01,S_04,S_02,S_06,S_05,S_03,SC_1]],
-    ["reelStrip_2", [S_05,S_07,S_02,S_07,S_08,S_07,S_02,S_05,S_08,S_05,S_08,S_05,S_03,S_05,W_01,S_07,S_08,S_02,S_05,SC_1,S_07,S_05,SC_1,S_08,S_06,S_08,S_05,S_08,S_06,W_01,S_07,S_05,S_07,S_02,S_07,S_08,S_04,S_05,S_07,SC_1,S_05,S_07]],
-    ["reelStrip_3", [S_03,S_08,S_06,S_02,S_04,S_06,S_04,S_06,S_05,S_06,S_04,S_08,S_07,S_04,S_07,S_08,S_03,S_04,S_08,S_05,S_08,S_03,S_08,S_07,S_08,S_03,S_08,SC_1,S_06,S_04,S_06,S_03,S_06,S_07,W_01,S_06,S_08,S_04,S_08,S_06,S_03,S_08]],
-    ["reelStrip_4", [S_07,S_02,S_05,S_02,S_08,S_03,S_02,S_04,S_03,S_04,S_05,S_04,S_03,S_05,S_02,S_05,S_02,S_06,W_01,S_04,S_07,S_02,S_07,S_08,W_01,S_08,S_02,S_08,SC_1,S_06,S_02,S_06,S_03,S_06,S_07,S_03,S_07,S_06,S_03,S_05,S_07,S_02]],
-    ["reelStrip_5", [S_05,S_03,S_06,S_04,W_01,S_05,S_07,S_03,S_08,S_07,S_03,S_02,S_05,S_08,S_04,S_02,S_06,S_05,S_03,S_08,S_02,S_06,S_07,S_04,S_05,S_06,S_04,S_08,S_03,SC_1,S_08,S_07,S_05,S_02,S_07,S_04,S_06,S_05,S_04,S_07,S_05,S_03]]
+    ["reelStrip_1", [S_03, SC_1, S_07, S_05, S_03, S_08, S_03, S_07, S_04, S_07, S_04, S_07, S_05, S_04, W_01, S_05, S_02, S_06, S_04, S_08, S_07, SC_1, S_07, S_02, S_04, S_03, S_07, S_06, S_03, S_06, S_04, S_06, W_01, S_02, S_07, W_01, S_04, S_02, S_06, S_05, S_03, SC_1]],
+    ["reelStrip_2", [S_05, S_07, S_02, S_07, S_08, S_07, S_02, S_05, S_08, S_05, S_08, S_05, S_03, S_05, W_01, S_07, S_08, S_02, S_05, SC_1, S_07, S_05, SC_1, S_08, S_06, S_08, S_05, S_08, S_06, W_01, S_07, S_05, S_07, S_02, S_07, S_08, S_04, S_05, S_07, SC_1, S_05, S_07]],
+    ["reelStrip_3", [S_03, S_08, S_06, S_02, S_04, S_06, S_04, S_06, S_05, S_06, S_04, S_08, S_07, S_04, S_07, S_08, S_03, S_04, S_08, S_05, S_08, S_03, S_08, S_07, S_08, S_03, S_08, SC_1, S_06, S_04, S_06, S_03, S_06, S_07, W_01, S_06, S_08, S_04, S_08, S_06, S_03, S_08]],
+    ["reelStrip_4", [S_07, S_02, S_05, S_02, S_08, S_03, S_02, S_04, S_03, S_04, S_05, S_04, S_03, S_05, S_02, S_05, S_02, S_06, W_01, S_04, S_07, S_02, S_07, S_08, W_01, S_08, S_02, S_08, SC_1, S_06, S_02, S_06, S_03, S_06, S_07, S_03, S_07, S_06, S_03, S_05, S_07, S_02]],
+    ["reelStrip_5", [S_05, S_03, S_06, S_04, W_01, S_05, S_07, S_03, S_08, S_07, S_03, S_02, S_05, S_08, S_04, S_02, S_06, S_05, S_03, S_08, S_02, S_06, S_07, S_04, S_05, S_06, S_04, S_08, S_03, SC_1, S_08, S_07, S_05, S_02, S_07, S_04, S_06, S_05, S_04, S_07, S_05, S_03]]
 ];
 
 lineEval.fsReelStrips = [
-    ["fsReelStrip1",[S_07,S_06,W_01,S_08,S_03,S_02,S_07,S_08,S_05,S_02,S_08,S_07,S_06,S_08,S_04,S_06,S_08,S_07,S_02,S_03,S_08,S_06,W_01,S_03,S_07,S_06,S_03,S_08,W_01,S_07,S_06,S_08,S_03,S_07,S_06,S_05,S_08,S_02,S_04,S_03,S_07,S_06]],
-    ["fsReelStrip1",[S_03,S_04,S_06,S_08,S_07,S_04,S_06,S_08,W_01,S_07,S_08,S_04,S_06,S_08,S_04,S_05,S_07,S_06,S_08,S_07,S_06,S_08,S_07,S_06,S_08,S_02,S_04,S_08,S_06,S_07,S_08,S_03,S_04,S_08,W_01,S_06,S_05,S_04,S_08,S_06,S_03,S_04]],
-    ["fsReelStrip1",[S_07,S_06,S_05,S_07,S_08,S_05,S_04,S_07,W_01,S_05,S_08,S_07,S_04,S_05,W_01,S_07,S_05,S_03,W_01,S_05,S_08,S_07,S_05,S_08,S_07,S_02,S_05,S_04,S_07,S_02,S_06,S_08,S_05,S_04,S_06,S_07,S_08,S_02,S_06,S_05,S_07,S_06]],
-    ["fsReelStrip1",[S_05,W_01,S_04,S_03,S_06,S_05,S_02,W_01,S_05,S_08,S_06,S_03,S_02,S_07,S_04,S_06,S_03,S_04,S_05,S_03,S_06,S_04,S_08,S_07,S_05,S_06,S_07,S_05,S_06,S_07,S_08,S_05,S_03,S_07,S_05,S_06,S_07,S_05,S_03,S_07,S_05,W_01]],
-    ["fsReelStrip1",[S_02,S_03,S_04,S_02,S_08,S_06,S_04,S_05,S_02,S_08,S_03,S_07,S_03,S_04,S_08,W_01,S_05,S_03,S_04,S_05,S_08,S_02,S_05,S_08,S_02,S_05,S_08,S_06,S_02,S_04,S_08,S_03,S_05,S_08,S_06,S_02,S_07,W_01,S_05,S_04,S_02,S_03]]
+    ["fsReelStrip1", [S_07, S_06, W_01, S_08, S_03, S_02, S_07, S_08, S_05, S_02, S_08, S_07, S_06, S_08, S_04, S_06, S_08, S_07, S_02, S_03, S_08, S_06, W_01, S_03, S_07, S_06, S_03, S_08, W_01, S_07, S_06, S_08, S_03, S_07, S_06, S_05, S_08, S_02, S_04, S_03, S_07, S_06]],
+    ["fsReelStrip1", [S_03, S_04, S_06, S_08, S_07, S_04, S_06, S_08, W_01, S_07, S_08, S_04, S_06, S_08, S_04, S_05, S_07, S_06, S_08, S_07, S_06, S_08, S_07, S_06, S_08, S_02, S_04, S_08, S_06, S_07, S_08, S_03, S_04, S_08, W_01, S_06, S_05, S_04, S_08, S_06, S_03, S_04]],
+    ["fsReelStrip1", [S_07, S_06, S_05, S_07, S_08, S_05, S_04, S_07, W_01, S_05, S_08, S_07, S_04, S_05, W_01, S_07, S_05, S_03, W_01, S_05, S_08, S_07, S_05, S_08, S_07, S_02, S_05, S_04, S_07, S_02, S_06, S_08, S_05, S_04, S_06, S_07, S_08, S_02, S_06, S_05, S_07, S_06]],
+    ["fsReelStrip1", [S_05, W_01, S_04, S_03, S_06, S_05, S_02, W_01, S_05, S_08, S_06, S_03, S_02, S_07, S_04, S_06, S_03, S_04, S_05, S_03, S_06, S_04, S_08, S_07, S_05, S_06, S_07, S_05, S_06, S_07, S_08, S_05, S_03, S_07, S_05, S_06, S_07, S_05, S_03, S_07, S_05, W_01]],
+    ["fsReelStrip1", [S_02, S_03, S_04, S_02, S_08, S_06, S_04, S_05, S_02, S_08, S_03, S_07, S_03, S_04, S_08, W_01, S_05, S_03, S_04, S_05, S_08, S_02, S_05, S_08, S_02, S_05, S_08, S_06, S_02, S_04, S_08, S_03, S_05, S_08, S_06, S_02, S_07, W_01, S_05, S_04, S_02, S_03]]
 ];
 
 
-const symbols = [W_01,S_02,S_03,S_04,S_05,S_06,S_07,S_08,SC_1];
+const symbols = [W_01, S_02, S_03, S_04, S_05, S_06, S_07, S_08, SC_1];
 const numScatters = 1;
 let scatterSymbols = [SC_1];
 
@@ -77,7 +78,7 @@ let reelStops = [];
 lineEval.setReelResults = function () {
     // get reel stops
     // call rng and get number within range of reel strip length
-    reelStops = reelStop.getReelStopArray(0, reelStrip_1.length-4, 5);
+    reelStops = reelStop.getReelStopArray(0, reelStrip_1.length - 4, 5);
     // reelStops = [5, 5, 93, 92, 39];
     // console.log(reelStops);
     // set top line with symbols at index of rng result
@@ -109,9 +110,9 @@ lineEval.setReelResults = function () {
 lineEval.dynamicSetReelResults = function (reels) {
     reelResults = [];//clear previous results
     reelStops = [];//clear previous results
-    
+
     reelStops = reelStop.getReelStopArray(0, reels);
-    for(let i=0; i< reels.length; i++){
+    for (let i = 0; i < reels.length; i++) {
         reelResults.push(reels[i][1][reelStops[i]]);
         reelResults.push(reels[i][1][reelStops[i] + 1]);
         reelResults.push(reels[i][1][reelStops[i] + 2]);
@@ -156,7 +157,7 @@ lineEval.checkLineWins = function (reels) {
             }
             if (line_win > 1) {
                 // console.log(lines[l][0] + " had " + line_win + " hits of symbol: " + symbols[i]);
-                lineEval.spinResults.push(["symbol",symbols[i], lines[l][0],"hit_count", line_win])
+                lineEval.spinResults.push(["symbol", symbols[i], lines[l][0], "hit_count", line_win])
             }
             line_win = 0;
             // reset lineResults to prevent false positive from previous lines
@@ -182,38 +183,103 @@ lineEval.checkScatters = function () {
                 scatterCount++;
             }
         }
-        lineEval.spinResults.push(["scatter_symbol", scatterSymbols[j],scatterCount]);
+        lineEval.spinResults.push(["scatter_symbol", scatterSymbols[j], "hit_count", scatterCount]);
         // console.log("scatter Count: " + scatterCount + " scatter symbol: " + scatterSymbols[j]);
-        if (scatterCount >2){
-            switch (scatterCount) {
-                case 3: 
-                console.log("3scatters");
-                break;
-                case 4: 
-                console.log("4scatters");
-                break;
-                case 5: 
-                console.log("5scatters");
-                break;
-            }
-
+        if (scatterCount > 2){
+            lineEval.handleScatters(scatterCount);
         }
     }
+}
+
+lineEval.handleScatters = function (scatterCount) {
+    let bonus = true;
+    let spinWeight = RNG.getRandomNumber(1, 100);
+    let numSpins;
+    let multiplierWeight = RNG.getRandomNumber(1, 100);;
+    let multiplier;
+    let entryAwardWeight = RNG.getRandomNumber(1, 100);;
+    let entryAward;
+    switch (scatterCount) {
+        case 3:
+            console.log("3 scatter bonus |spinWeight|"+ spinWeight +" |multiplierWeight|" + multiplierWeight + "|entryAwardWeight|" + entryAwardWeight);
+            // *********** 3 scatter weight table range = 100 ************
+            // spins  wt      multiplier  wt    entry-award   wt
+            // 10     18         2        40       1          50
+            // 11     23         3        39       2          41  
+            // 12     22         4        19       3          5
+            // 13     22         5        2        4          2
+            // 14     10                           5          2
+            // 15     5
+            
+            // ******** Set Number of freespins ***********
+            if (spinWeight >= 83) numSpins = 10;
+            else if (spinWeight >= 60 && spinWeight < 83) numSpins = 11;
+            else if (spinWeight >= 38 && spinWeight < 60) numSpins = 12;
+            else if (spinWeight >= 16 && spinWeight < 38) numSpins = 13;
+            else if (spinWeight >= 6 && spinWeight < 16) numSpins = 14;
+            else if (spinWeight >= 1 && spinWeight < 6) numSpins = 15;
+            // ******** Set Multiplier **************
+            if (multiplierWeight >= 61) multiplier = 2;
+            else if (multiplierWeight >= 22 && multiplierWeight < 61) multiplier = 3;
+            else if (multiplierWeight >= 3 && multiplierWeight < 22) multiplier = 4;
+            else if (multiplierWeight >= 1 && multiplierWeight < 3) multiplier = 5;
+            // ******** Set Entry Award *************
+            if (entryAwardWeight >= 51) entryAward = 1;
+            else if (entryAwardWeight >= 10 && entryAwardWeight < 51) entryAward = 2;
+            else if (entryAwardWeight >= 5 && entryAwardWeight < 10) entryAward = 3;
+            else if (entryAwardWeight >= 3 && entryAwardWeight < 5) entryAward = 4;
+            else if (entryAwardWeight >= 1 && entryAwardWeight < 3) entryAward = 5;
+            console.log("freespins|" + numSpins + " |multiplier|" + multiplier + "|entryAward|" + entryAward);
+            break;
+        case 4:
+            console.log("4scatters");
+
+            // *********** 4 scatter weight table range = 100 ************
+            // spins  wt      multiplier  wt    entry-award   wt
+            // 10     10         2        30       5          40
+            // 11     20         3        30       10         30  
+            // 12     20         4        38       15         15
+            // 13     20         5        2        20         15
+            // 15     20                           25          0
+            // 20     10
+
+            numSpins = 20;
+            multiplier = 2;
+            entryAward = 20;
+            break;
+        case 5:
+            console.log("5scatters");
+
+            // *********** 5 scatter weight table range = 100 ************
+            // spins  wt      multiplier  wt    entry-award   wt
+            // 15     20         2        20       5          5
+            // 16     20         3        29       10         25  
+            // 17     20         4        20       15         20
+            // 18     20         5        31       20         20
+            // 20     10                           25         25
+            // 25     10
+
+            numSpins = 25;
+            multiplier = 2;
+            entryAward = 30;
+            break;
+    }
+
 }
 
 
 lineEval.spinTillYouWin = function (reels) {
     // center symbol sticks wild and respins until prize is won
     let isWildtrue;
-    if(reelResults[7] == wild){
+    if (reelResults[7] == wild) {
         isWildtrue = true;
     } else {
         isWildtrue = false;
     }
-    
-    while (isWildtrue){
-        
-        while ( lineEval.spinResults.indexOf("win_total")+1 <= 0){
+
+    while (isWildtrue) {
+
+        while (lineEval.spinResults.indexOf("win_total") + 1 <= 0) {
             reelResults[7] == wild;
             lineEval.checkLineWins(reels);// TODO handle overwriting center wild in reelResults during check line wins
 
