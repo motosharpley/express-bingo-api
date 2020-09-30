@@ -13,13 +13,14 @@
 const lineEval = require('./lineEval');
 const fs = require('fs');
 const data = require('./data');
+const reelStop = require('./reelStop');
 
 const payEval = {};
 
 payEval.playResult = [];
 
 payEval.creditsPerLine = function() {
-    lineEval.checkLineWins(lineEval.reelStrips);
+    lineEval.checkLineWins(reelStop.reelStrips);
     let linePay = 0;
     let winTotal = 0;
     let betLevel = 1; // TODO Use betLevel as linewin multiplier - accept as parameter from request message
