@@ -1,5 +1,6 @@
 const reelStop = require('./reelStop');
 const RNG = require('./RNG');
+const data = require('./data');
 
 const lineEval = {};
 
@@ -110,7 +111,7 @@ lineEval.setReelResults = function () {
 lineEval.dynamicSetReelResults = function (reels) {
     reelResults = [];//clear previous results
     reelStops = [];//clear previous results
-
+    // reelStops = [26,38,26,31,28];
     reelStops = reelStop.getReelStopArray(0, reels);
     for (let i = 0; i < reels.length; i++) {
         reelResults.push(reels[i][1][reelStops[i]]);
@@ -123,14 +124,15 @@ lineEval.dynamicSetReelResults = function (reels) {
 
 
 let line_win = 0;
-lineEval.spinResults = []; // Spin Results data structure [[0index array contains reel results], [line wins][scatter wins]]
+// lineEval.spinResults = []; // Spin Results data structure [[0index array contains reel results], [line wins][scatter wins]]
+lineEval.isBonus = false;
 
 lineEval.checkLineWins = function (reels) {
-    lineEval.spinResults = [];
+    data.spinResults = [];
     // lineEval.setReelResults();
-    lineEval.dynamicSetReelResults(reels)
-    lineEval.spinResults.push(reelStops)
-    lineEval.spinResults.push(reelResults);
+    reelStop.dynamicSetReelResults(reels)
+    data.spinResults.push(data.reelStops)
+    data.spinResults.push(data.reelResults);
     let lineResults = [];
     // TODO symbols.length - number of scatters
     for (let i = 0; i < symbols.length - numScatters; i++) {
@@ -141,14 +143,14 @@ lineEval.checkLineWins = function (reels) {
             for (let x = 0; x < lines[l][1].length; x++) {
                 // if there is a break in the symbols in line from left to right exit the loop
                 // the below logic also checks for wild -- the wild symbol must be 1st in the symbols definition array -- multiple wilds will require addtional logic
-                if ((lines[l][1][x] == 1) && !((reelResults[x] == symbols[i]) || (reelResults[x] == symbols[0]))) {
+                if ((lines[l][1][x] == 1) && !((data.reelResults[x] == symbols[i]) || (data.reelResults[x] == symbols[0]))) {
                     break;
                 }
-                else if ((lines[l][1][x] == 1) && ((reelResults[x] == symbols[i]) || (reelResults[x] == symbols[0]))) {
+                else if ((lines[l][1][x] == 1) && ((data.reelResults[x] == symbols[i]) || (data.reelResults[x] == symbols[0]))) {
                     // console.log("line num = " + lines[l][1][x]);
-                    // console.log("reel results = " + reelResults[x]);
+                    // console.log("reel results = " + data.reelResults[x]);
                     line_win++;
-                    lineResults.push(reelResults[x])
+                    lineResults.push(data.reelResults[x])
                 }
             }// ******* end of evaluation loop *******
             // this is a sanity check to prevent false positives on lines which contain wilds but don't have the current symbol present
@@ -157,7 +159,7 @@ lineEval.checkLineWins = function (reels) {
             }
             if (line_win > 1) {
                 // console.log(lines[l][0] + " had " + line_win + " hits of symbol: " + symbols[i]);
-                lineEval.spinResults.push(["symbol", symbols[i], lines[l][0], "hit_count", line_win])
+                data.spinResults.push(["symbol", symbols[i], lines[l][0], "hit_count", line_win])
             }
             line_win = 0;
             // reset lineResults to prevent false positive from previous lines
@@ -183,16 +185,16 @@ lineEval.checkScatters = function () {
                 scatterCount++;
             }
         }
-        lineEval.spinResults.push(["scatter_symbol", scatterSymbols[j], "hit_count", scatterCount]);
+        data.spinResults.push(["scatter_symbol", scatterSymbols[j], "hit_count", scatterCount]);
         // console.log("scatter Count: " + scatterCount + " scatter symbol: " + scatterSymbols[j]);
         if (scatterCount > 2){
+            lineEval.isBonus = true;
             lineEval.handleScatters(scatterCount);
         }
     }
 }
 
 lineEval.handleScatters = function (scatterCount) {
-    let bonus = true;
     let spinWeight = RNG.getRandomNumber(1, 100);
     let numSpins;
     let multiplierWeight = RNG.getRandomNumber(1, 100);;
@@ -229,7 +231,7 @@ lineEval.handleScatters = function (scatterCount) {
             else if (entryAwardWeight >= 5 && entryAwardWeight < 10) entryAward = 3;
             else if (entryAwardWeight >= 3 && entryAwardWeight < 5) entryAward = 4;
             else if (entryAwardWeight >= 1 && entryAwardWeight < 3) entryAward = 5;
-            console.log("freespins|" + numSpins + " |multiplier|" + multiplier + "|entryAward|" + entryAward);
+            console.log("|freespins|" + numSpins + " |multiplier|" + multiplier + "|entryAward|" + entryAward);
             break;
         case 4:
             console.log("4scatters");

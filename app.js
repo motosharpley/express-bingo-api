@@ -5,6 +5,7 @@ const gameQueue = require('./components/gameQueue');
 const lineEval = require('./components/lineEval');
 const payEval = require('./components/payEval');
 const cors = require('cors');
+const data = require('./components/data');
 
 const app = express();
 
@@ -43,8 +44,9 @@ app.get('/all-bingo-game', (req, res) => {
   g++
 });
 
+// TODO handle bet level in request message
 app.get('/class-3', (req, res) => {
   // lineEval.checkLineWins();
   payEval.creditsPerLine();
-  res.send(lineEval.spinResults );
+  res.send(data.spinResults );
 });

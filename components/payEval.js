@@ -12,19 +12,23 @@
 
 const lineEval = require('./lineEval');
 const fs = require('fs');
+const data = require('./data');
 
 const payEval = {};
+
+payEval.playResult = [];
 
 payEval.creditsPerLine = function() {
     lineEval.checkLineWins(lineEval.reelStrips);
     let linePay = 0;
     let winTotal = 0;
+    let betLevel = 1; // TODO Use betLevel as linewin multiplier - accept as parameter from request message
     //iterate through each line win array in the spinResults array and calculate pay based on symbol and hit count
-    for (i = 2; i < lineEval.spinResults.length; i++) {
+    for (i = 2; i < data.spinResults.length; i++) {
         linePay = 0;
-        let symbol = lineEval.spinResults[i][1];
-        let hitcount = lineEval.spinResults[i][4];
-        let currentLine = lineEval.spinResults[i][2];
+        let symbol = data.spinResults[i][1];
+        let hitcount = data.spinResults[i][4];
+        let currentLine = data.spinResults[i][2];
 
         switch (symbol) {
             case 1:
@@ -70,28 +74,34 @@ payEval.creditsPerLine = function() {
                 break;
         }
         // CHECK FOR MULTIPLE WINS ON SAME LINE -- THIS IS AN EDGE CASE WHERE THE LINE STARTS WITH WILD SYMBOLS BUT COMPLETES A HIGHER VALUE SYMBOL WIN LATER ON IN LINE EVALUATION
-        for(let x = 2; x<lineEval.spinResults.length-1; x++){
-            if (lineEval.spinResults[x][2] == currentLine){
-                if(lineEval.spinResults[x][6] > linePay){
+        for(let x = 2; x<data.spinResults.length-1; x++){
+            if (data.spinResults[x][2] == currentLine){
+                if(data.spinResults[x][6] > linePay){
                     linePay = 0;
                 }
-                else if(lineEval.spinResults[x][6] < linePay){
-                    lineEval.spinResults[x][6] = 0;
+                else if(data.spinResults[x][6] < linePay){
+                    data.spinResults[x][6] = 0;
                 }
                 // check for tie and keep wild as winner in event of wild
-                if(lineEval.spinResults[x][6] == linePay){
+                if(data.spinResults[x][6] == linePay){
                     linePay = 0;
                 }
                 
             }
         }
-        lineEval.spinResults[i].push("line_pay", linePay);
+        linePay = linePay * betLevel;
+        data.spinResults[i].push("line_pay", linePay);
     }
     // add up the final set of linePay values to get winTotal
-    for(let x = 2; x<lineEval.spinResults.length-1; x++){
-        winTotal += lineEval.spinResults[x][6]
+    for(let x = 2; x<data.spinResults.length-1; x++){
+        winTotal += data.spinResults[x][6]
     }
-    lineEval.spinResults.push(["win_total", winTotal]);
+    data.spinResults.push(["win_total", winTotal]);
+    
+    payEval.playResult.push(data.spinResults);
+    
+    console.log(payEval.playResult);
+    console.log("next spin added");
 
     // ******* Write Sample files for bingo *******
 
