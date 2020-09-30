@@ -47,98 +47,21 @@ const S_07 = 7;
 const S_08 = 8;
 const SC_1 = 9;
 
-lineEval.reelStrips = [
-    ["reelStrip_1", [S_03, SC_1, S_07, S_05, S_03, S_08, S_03, S_07, S_04, S_07, S_04, S_07, S_05, S_04, W_01, S_05, S_02, S_06, S_04, S_08, S_07, SC_1, S_07, S_02, S_04, S_03, S_07, S_06, S_03, S_06, S_04, S_06, W_01, S_02, S_07, W_01, S_04, S_02, S_06, S_05, S_03, SC_1]],
-    ["reelStrip_2", [S_05, S_07, S_02, S_07, S_08, S_07, S_02, S_05, S_08, S_05, S_08, S_05, S_03, S_05, W_01, S_07, S_08, S_02, S_05, SC_1, S_07, S_05, SC_1, S_08, S_06, S_08, S_05, S_08, S_06, W_01, S_07, S_05, S_07, S_02, S_07, S_08, S_04, S_05, S_07, SC_1, S_05, S_07]],
-    ["reelStrip_3", [S_03, S_08, S_06, S_02, S_04, S_06, S_04, S_06, S_05, S_06, S_04, S_08, S_07, S_04, S_07, S_08, S_03, S_04, S_08, S_05, S_08, S_03, S_08, S_07, S_08, S_03, S_08, SC_1, S_06, S_04, S_06, S_03, S_06, S_07, W_01, S_06, S_08, S_04, S_08, S_06, S_03, S_08]],
-    ["reelStrip_4", [S_07, S_02, S_05, S_02, S_08, S_03, S_02, S_04, S_03, S_04, S_05, S_04, S_03, S_05, S_02, S_05, S_02, S_06, W_01, S_04, S_07, S_02, S_07, S_08, W_01, S_08, S_02, S_08, SC_1, S_06, S_02, S_06, S_03, S_06, S_07, S_03, S_07, S_06, S_03, S_05, S_07, S_02]],
-    ["reelStrip_5", [S_05, S_03, S_06, S_04, W_01, S_05, S_07, S_03, S_08, S_07, S_03, S_02, S_05, S_08, S_04, S_02, S_06, S_05, S_03, S_08, S_02, S_06, S_07, S_04, S_05, S_06, S_04, S_08, S_03, SC_1, S_08, S_07, S_05, S_02, S_07, S_04, S_06, S_05, S_04, S_07, S_05, S_03]]
-];
-
-lineEval.fsReelStrips = [
-    ["fsReelStrip1", [S_07, S_06, W_01, S_08, S_03, S_02, S_07, S_08, S_05, S_02, S_08, S_07, S_06, S_08, S_04, S_06, S_08, S_07, S_02, S_03, S_08, S_06, W_01, S_03, S_07, S_06, S_03, S_08, W_01, S_07, S_06, S_08, S_03, S_07, S_06, S_05, S_08, S_02, S_04, S_03, S_07, S_06]],
-    ["fsReelStrip1", [S_03, S_04, S_06, S_08, S_07, S_04, S_06, S_08, W_01, S_07, S_08, S_04, S_06, S_08, S_04, S_05, S_07, S_06, S_08, S_07, S_06, S_08, S_07, S_06, S_08, S_02, S_04, S_08, S_06, S_07, S_08, S_03, S_04, S_08, W_01, S_06, S_05, S_04, S_08, S_06, S_03, S_04]],
-    ["fsReelStrip1", [S_07, S_06, S_05, S_07, S_08, S_05, S_04, S_07, W_01, S_05, S_08, S_07, S_04, S_05, W_01, S_07, S_05, S_03, W_01, S_05, S_08, S_07, S_05, S_08, S_07, S_02, S_05, S_04, S_07, S_02, S_06, S_08, S_05, S_04, S_06, S_07, S_08, S_02, S_06, S_05, S_07, S_06]],
-    ["fsReelStrip1", [S_05, W_01, S_04, S_03, S_06, S_05, S_02, W_01, S_05, S_08, S_06, S_03, S_02, S_07, S_04, S_06, S_03, S_04, S_05, S_03, S_06, S_04, S_08, S_07, S_05, S_06, S_07, S_05, S_06, S_07, S_08, S_05, S_03, S_07, S_05, S_06, S_07, S_05, S_03, S_07, S_05, W_01]],
-    ["fsReelStrip1", [S_02, S_03, S_04, S_02, S_08, S_06, S_04, S_05, S_02, S_08, S_03, S_07, S_03, S_04, S_08, W_01, S_05, S_03, S_04, S_05, S_08, S_02, S_05, S_08, S_02, S_05, S_08, S_06, S_02, S_04, S_08, S_03, S_05, S_08, S_06, S_02, S_07, W_01, S_05, S_04, S_02, S_03]]
-];
-
-
 const symbols = [W_01, S_02, S_03, S_04, S_05, S_06, S_07, S_08, SC_1];
 const numScatters = 1;
 let scatterSymbols = [SC_1];
 
-// ******* Begin Reel Stop & Reel Results  *******
-
-let reelResults = [];
-let reelStops = [];
-
-// TODO set number of reels and length of results dynamically
-// TODO check each reelstop for end of reel strip location and loop back to beginning with incremented stops if at end of reel strip
-// TODO Handle use of FreeSpin reel strips
-lineEval.setReelResults = function () {
-    // get reel stops
-    // call rng and get number within range of reel strip length
-    reelStops = reelStop.getReelStopArray(0, reelStrip_1.length - 4, 5);
-    // reelStops = [5, 5, 93, 92, 39];
-    // console.log(reelStops);
-    // set top line with symbols at index of rng result
-    // for each column increment rng result and get symbol from reel strip at index of rng ++
-    // reel 1
-    reelResults.push(reelStrip_1[reelStops[0]]);
-    reelResults.push(reelStrip_1[reelStops[0] + 1]);
-    reelResults.push(reelStrip_1[reelStops[0] + 2]);
-    // reel 2
-    reelResults.push(reelStrip_2[reelStops[1]]);
-    reelResults.push(reelStrip_2[reelStops[1] + 1]);
-    reelResults.push(reelStrip_2[reelStops[1] + 2]);
-    // reel 3
-    reelResults.push(reelStrip_3[reelStops[2]]);
-    reelResults.push(reelStrip_3[reelStops[2] + 1]);
-    reelResults.push(reelStrip_3[reelStops[2] + 2]);
-    // reel 4
-    reelResults.push(reelStrip_4[reelStops[3]]);
-    reelResults.push(reelStrip_4[reelStops[3] + 1]);
-    reelResults.push(reelStrip_4[reelStops[3] + 2]);
-    // reel 5
-    reelResults.push(reelStrip_5[reelStops[4]]);
-    reelResults.push(reelStrip_5[reelStops[4] + 1]);
-    reelResults.push(reelStrip_5[reelStops[4] + 2]);
-
-    // console.log("Reel Results: " + reelResults);
-};
-
-lineEval.dynamicSetReelResults = function (reels) {
-    reelResults = [];//clear previous results
-    reelStops = [];//clear previous results
-    // reelStops = [26,38,26,31,28];
-    reelStops = reelStop.getReelStopArray(0, reels);
-    for (let i = 0; i < reels.length; i++) {
-        reelResults.push(reels[i][1][reelStops[i]]);
-        reelResults.push(reels[i][1][reelStops[i] + 1]);
-        reelResults.push(reels[i][1][reelStops[i] + 2]);
-    }
-}
-
-// ******* End Reel Stop & Reel Results *******
-
-
 let line_win = 0;
-// lineEval.spinResults = []; // Spin Results data structure [[0index array contains reel results], [line wins][scatter wins]]
 lineEval.isBonus = false;
 
 lineEval.checkLineWins = function (reels) {
     data.spinResults = [];
-    // lineEval.setReelResults();
     reelStop.dynamicSetReelResults(reels)
     data.spinResults.push(data.reelStops)
     data.spinResults.push(data.reelResults);
     let lineResults = [];
-    // TODO symbols.length - number of scatters
     for (let i = 0; i < symbols.length - numScatters; i++) {
-        // console.log("current symbol = " + symbols[i]);
         for (let l = 0; l < lines.length; l++) {
-            // console.log("current line = " + lines[l][0]);
             // loop through each index of the current line and count how many of the current symbol or wild symbol are on that line continuously from left to right
             for (let x = 0; x < lines[l][1].length; x++) {
                 // if there is a break in the symbols in line from left to right exit the loop
@@ -147,8 +70,6 @@ lineEval.checkLineWins = function (reels) {
                     break;
                 }
                 else if ((lines[l][1][x] == 1) && ((data.reelResults[x] == symbols[i]) || (data.reelResults[x] == symbols[0]))) {
-                    // console.log("line num = " + lines[l][1][x]);
-                    // console.log("reel results = " + data.reelResults[x]);
                     line_win++;
                     lineResults.push(data.reelResults[x])
                 }
@@ -158,7 +79,6 @@ lineEval.checkLineWins = function (reels) {
                 line_win = 0
             }
             if (line_win > 1) {
-                // console.log(lines[l][0] + " had " + line_win + " hits of symbol: " + symbols[i]);
                 data.spinResults.push(["symbol", symbols[i], lines[l][0], "hit_count", line_win])
             }
             line_win = 0;
@@ -180,13 +100,12 @@ lineEval.checkScatters = function () {
         // reset scatter count when checking the next symbol
         scatterCount = 0;
         // loop through the reel results and count how many times the scatter symbol occurs
-        for (i = 0; i < reelResults.length; i++) {
-            if (reelResults[i] == scatterSymbols[j]) {
+        for (i = 0; i < data.reelResults.length; i++) {
+            if (data.reelResults[i] == scatterSymbols[j]) {
                 scatterCount++;
             }
         }
         data.spinResults.push(["scatter_symbol", scatterSymbols[j], "hit_count", scatterCount]);
-        // console.log("scatter Count: " + scatterCount + " scatter symbol: " + scatterSymbols[j]);
         if (scatterCount > 2){
             lineEval.isBonus = true;
             lineEval.handleScatters(scatterCount);
