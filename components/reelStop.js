@@ -53,7 +53,7 @@ reelStop.getReelStopArray = function(minStop, numReels) {
 reelStop.dynamicSetReelResults = function (reels) {
     data.reelResults = [];//clear previous results
     data.reelStops = [];//clear previous results
-    // reelStops = [26,38,26,31,28];
+    // data.reelStops = [26,38,26,31,28];
     data.reelStops = reelStop.getReelStopArray(0, reels);
     for (let i = 0; i < reels.length; i++) {
         data.reelResults.push(reels[i][1][data.reelStops[i]]);
