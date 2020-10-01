@@ -17,8 +17,8 @@ const reelStop = require('./reelStop');
 
 const payEval = {};
 
-payEval.creditsPerLine = function() {
-    lineEval.checkLineWins(reelStop.reelStrips);
+payEval.creditsPerLine = function (reels) {
+    lineEval.checkLineWins(reels);
     let linePay = 0;
     let winTotal = 0;
     let betLevel = 1; // TODO Use betLevel as linewin multiplier - accept as parameter from request message
@@ -98,30 +98,13 @@ payEval.creditsPerLine = function() {
     data.spinResults.push(["win_total", winTotal]);
     
     data.playResult.push(data.spinResults);
-    
-    console.log(data.playResult);
-    console.log("next spin added");
-
-    // ******* Write Sample files for bingo *******
-
-    // Check for scatter wins to prevent writing bonus trigger results to base game result files
-    // if(winTotal != 0 && winTotal != 5 && winTotal != 10 && winTotal != 15 && winTotal != 20 && winTotal != 25 && winTotal != 30){
-    // if(winTotal > 270){
-    //     if (lineEval.spinResults[lineEval.spinResults.length-3][2] < 3 && lineEval.spinResults[lineEval.spinResults.length-2][2] < 3){
-    //         let reelstopfile = lineEval.spinResults[0];
-    //         let reelSTR = reelstopfile.join(' ');
-            
-    //         let fileResults = `2*SPIN|${winTotal}$${reelSTR}\n`;
-    //         let pulltab = `basegame\t${winTotal}\n`;
-    //         fs.writeFileSync(`./sampleFiles/${winTotal}.txt`,fileResults,{flag: "a+"}, (err) => {
-    //             if (err) throw err; 
-    //         })
-    //         fs.writeFileSync(`./sampleFiles/pulltab_detail/${winTotal}.txt`,pulltab,{flag: "a+"}, (err) => {
-    //             if (err) throw err; 
-    //         })
-    //     }
-    // }
-    // ******* end write sample files *******
+    console.log(data.spinResults[data.spinResults.length-2][3]);
+    if (data.spinResults[data.spinResults.length-2][3]>2){
+        console.log("payeval freespin");
+        for(let i=0; i<lineEval.numSpins; i++){
+            payEval.creditsPerLine(reelStop.fsReelStrips);
+        }
+    }
 
 }
 
