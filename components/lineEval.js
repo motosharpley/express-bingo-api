@@ -167,10 +167,24 @@ lineEval.handleScatters = function (scatterCount) {
             // 13     20         5        2        20         15
             // 15     20                           25          0
             // 20     10
-
-            numSpins = 20;
-            multiplier = 2;
-            entryAward = 20;
+            // ******** Set Number of freespins ***********
+            if (spinWeight >= 91) lineEval.numSpins = 10;
+            else if (spinWeight >= 71 && spinWeight < 91) lineEval.numSpins = 11;
+            else if (spinWeight >= 51 && spinWeight < 71) lineEval.numSpins = 12;
+            else if (spinWeight >= 31 && spinWeight < 51) lineEval.numSpins = 13;
+            else if (spinWeight >= 11 && spinWeight < 31) lineEval.numSpins = 15;
+            else if (spinWeight >= 1 && spinWeight < 11) lineEval.numSpins = 20;
+            // ******** Set Multiplier **************
+            if (multiplierWeight >= 71) lineEval.multiplier = 2;
+            else if (multiplierWeight >= 41 && multiplierWeight < 71) lineEval.multiplier = 3;
+            else if (multiplierWeight >= 3 && multiplierWeight < 41) lineEval.multiplier = 4;
+            else if (multiplierWeight >= 1 && multiplierWeight < 3) lineEval.multiplier = 5;
+            // ******** Set Entry Award *************
+            if (entryAwardWeight >= 61) lineEval.entryAward = 5;
+            else if (entryAwardWeight >= 31 && entryAwardWeight < 61) lineEval.entryAward = 10;
+            else if (entryAwardWeight >= 16 && entryAwardWeight < 31) lineEval.entryAward = 15;
+            else if (entryAwardWeight >= 1 && entryAwardWeight < 16) lineEval.entryAward = 20;
+            console.log("|freespins|" + lineEval.numSpins + " |multiplier|" + lineEval.multiplier + "|entryAward|" + lineEval.entryAward);
             break;
         case 5:
             console.log("5scatters");
@@ -182,13 +196,30 @@ lineEval.handleScatters = function (scatterCount) {
             // 17     20         4        20       15         20
             // 18     20         5        31       20         20
             // 20     10                           25         25
-            // 25     10
-
-            numSpins = 25;
-            multiplier = 2;
-            entryAward = 30;
+            // 25     10                           30         5
+            // ******** Set Number of freespins ***********
+            if (spinWeight >= 81) lineEval.numSpins = 15;
+            else if (spinWeight >= 61 && spinWeight < 81) lineEval.numSpins = 16;
+            else if (spinWeight >= 41 && spinWeight < 61) lineEval.numSpins = 17;
+            else if (spinWeight >= 21 && spinWeight < 41) lineEval.numSpins = 18;
+            else if (spinWeight >= 11 && spinWeight < 21) lineEval.numSpins = 20;
+            else if (spinWeight >= 1 && spinWeight < 11) lineEval.numSpins = 25;
+            // ******** Set Multiplier **************
+            if (multiplierWeight >= 81) lineEval.multiplier = 2;
+            else if (multiplierWeight >= 52 && multiplierWeight < 81) lineEval.multiplier = 3;
+            else if (multiplierWeight >= 32 && multiplierWeight < 52) lineEval.multiplier = 4;
+            else if (multiplierWeight >= 1 && multiplierWeight < 32) lineEval.multiplier = 5;
+            // ******** Set Entry Award *************
+            if (entryAwardWeight >= 96) lineEval.entryAward = 5;
+            else if (entryAwardWeight >= 71 && entryAwardWeight < 96) lineEval.entryAward = 10;
+            else if (entryAwardWeight >= 51 && entryAwardWeight < 71) lineEval.entryAward = 15;
+            else if (entryAwardWeight >= 31 && entryAwardWeight < 51) lineEval.entryAward = 20;
+            else if (entryAwardWeight >= 6 && entryAwardWeight < 31) lineEval.entryAward = 25;
+            else if (entryAwardWeight >= 1 && entryAwardWeight < 6) lineEval.entryAward = 30;
+            console.log("|freespins|" + lineEval.numSpins + " |multiplier|" + lineEval.multiplier + "|entryAward|" + lineEval.entryAward);
             break;
     }
+    // TODO entryAward = betLevel x numberLines x entryAward
 }
 
 
