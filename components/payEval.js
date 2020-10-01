@@ -17,8 +17,6 @@ const reelStop = require('./reelStop');
 
 const payEval = {};
 
-payEval.playResult = [];
-
 payEval.creditsPerLine = function() {
     lineEval.checkLineWins(reelStop.reelStrips);
     let linePay = 0;
@@ -99,9 +97,9 @@ payEval.creditsPerLine = function() {
     }
     data.spinResults.push(["win_total", winTotal]);
     
-    payEval.playResult.push(data.spinResults);
+    data.playResult.push(data.spinResults);
     
-    console.log(payEval.playResult);
+    console.log(data.playResult);
     console.log("next spin added");
 
     // ******* Write Sample files for bingo *******
