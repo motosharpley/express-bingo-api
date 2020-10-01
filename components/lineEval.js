@@ -113,13 +113,17 @@ lineEval.checkScatters = function () {
     }
 }
 
+lineEval.numSpins;
+lineEval.multiplier;
+lineEval.entryAward;
+
+
+
+
 lineEval.handleScatters = function (scatterCount) {
     let spinWeight = RNG.getRandomNumber(1, 100);
-    let numSpins;
     let multiplierWeight = RNG.getRandomNumber(1, 100);;
-    let multiplier;
     let entryAwardWeight = RNG.getRandomNumber(1, 100);;
-    let entryAward;
     switch (scatterCount) {
         case 3:
             console.log("3 scatter bonus |spinWeight|"+ spinWeight +" |multiplierWeight|" + multiplierWeight + "|entryAwardWeight|" + entryAwardWeight);
@@ -133,24 +137,24 @@ lineEval.handleScatters = function (scatterCount) {
             // 15     5
             
             // ******** Set Number of freespins ***********
-            if (spinWeight >= 83) numSpins = 10;
-            else if (spinWeight >= 60 && spinWeight < 83) numSpins = 11;
-            else if (spinWeight >= 38 && spinWeight < 60) numSpins = 12;
-            else if (spinWeight >= 16 && spinWeight < 38) numSpins = 13;
-            else if (spinWeight >= 6 && spinWeight < 16) numSpins = 14;
-            else if (spinWeight >= 1 && spinWeight < 6) numSpins = 15;
+            if (spinWeight >= 83) lineEval.numSpins = 10;
+            else if (spinWeight >= 60 && spinWeight < 83) lineEval.numSpins = 11;
+            else if (spinWeight >= 38 && spinWeight < 60) lineEval.numSpins = 12;
+            else if (spinWeight >= 16 && spinWeight < 38) lineEval.numSpins = 13;
+            else if (spinWeight >= 6 && spinWeight < 16) lineEval.numSpins = 14;
+            else if (spinWeight >= 1 && spinWeight < 6) lineEval.numSpins = 15;
             // ******** Set Multiplier **************
-            if (multiplierWeight >= 61) multiplier = 2;
-            else if (multiplierWeight >= 22 && multiplierWeight < 61) multiplier = 3;
-            else if (multiplierWeight >= 3 && multiplierWeight < 22) multiplier = 4;
-            else if (multiplierWeight >= 1 && multiplierWeight < 3) multiplier = 5;
+            if (multiplierWeight >= 61) lineEval.multiplier = 2;
+            else if (multiplierWeight >= 22 && multiplierWeight < 61) lineEval.multiplier = 3;
+            else if (multiplierWeight >= 3 && multiplierWeight < 22) lineEval.multiplier = 4;
+            else if (multiplierWeight >= 1 && multiplierWeight < 3) lineEval.multiplier = 5;
             // ******** Set Entry Award *************
-            if (entryAwardWeight >= 51) entryAward = 1;
-            else if (entryAwardWeight >= 10 && entryAwardWeight < 51) entryAward = 2;
-            else if (entryAwardWeight >= 5 && entryAwardWeight < 10) entryAward = 3;
-            else if (entryAwardWeight >= 3 && entryAwardWeight < 5) entryAward = 4;
-            else if (entryAwardWeight >= 1 && entryAwardWeight < 3) entryAward = 5;
-            console.log("|freespins|" + numSpins + " |multiplier|" + multiplier + "|entryAward|" + entryAward);
+            if (entryAwardWeight >= 51) lineEval.entryAward = 1;
+            else if (entryAwardWeight >= 10 && entryAwardWeight < 51) lineEval.entryAward = 2;
+            else if (entryAwardWeight >= 5 && entryAwardWeight < 10) lineEval.entryAward = 3;
+            else if (entryAwardWeight >= 3 && entryAwardWeight < 5) lineEval.entryAward = 4;
+            else if (entryAwardWeight >= 1 && entryAwardWeight < 3) lineEval.entryAward = 5;
+            console.log("|freespins|" + lineEval.numSpins + " |multiplier|" + lineEval.multiplier + "|entryAward|" + lineEval.entryAward);
             break;
         case 4:
             console.log("4scatters");
@@ -185,7 +189,6 @@ lineEval.handleScatters = function (scatterCount) {
             entryAward = 30;
             break;
     }
-
 }
 
 
