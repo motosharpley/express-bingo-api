@@ -101,6 +101,7 @@ payEval.creditsPerLine = function (reels) {
     console.log(data.spinResults[data.spinResults.length-2][3]);
     if (data.spinResults[data.spinResults.length-2][3]>2){
         console.log("payeval freespin");
+        data.playResult.push(["numSpins",lineEval.numSpins,"multiplier",lineEval.multiplier,"entryAward",lineEval.entryAward ])
         for(let i=0; i<lineEval.numSpins; i++){
             payEval.creditsPerLine(reelStop.fsReelStrips);
         }
