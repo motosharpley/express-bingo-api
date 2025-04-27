@@ -1,7 +1,7 @@
 {
-  "name": "per-bingo-engine",
+  "name": "express-bingo-engine",
   "version": "1.0.0",
-  "description": "pervasive bingo engine api prototype",
+  "description": "bingo engine api prototype",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
