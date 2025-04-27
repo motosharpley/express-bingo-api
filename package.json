@@ -1,5 +1,5 @@
 {
-  "name": "express-bingo-engine",
+  "name": "express-bingo-api",
   "version": "1.0.0",
   "description": "bingo engine api prototype",
   "main": "app.js",
