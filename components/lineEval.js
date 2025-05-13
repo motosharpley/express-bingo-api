@@ -14,7 +14,8 @@ const lineEval = {};
 // 000
 // 111
 // 000
-// binary as array = [0,1,0,0,1,0,0,1,0] --column wise representation
+// binary as array = [0,1,0,0,1,0,0,1,0] --column wise representation 3x3
+// const lines below are defined in a 3x5 array
 const lines = [
   ['line_1', [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]],
   ['line_2', [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0]],
@@ -43,6 +44,7 @@ const lines = [
   ['line_25', [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1]],
 ];
 
+// Reelstrips are column wise representation of the reel strips
 lineEval.reelStrips = [
   [
     'reelStrip_1',
