@@ -13,22 +13,21 @@
 
 const cardBinary = {};
 
-cardBinary.currentCardBinary = new Array;
+cardBinary.currentCardBinary = new Array();
 
-cardBinary.cardPatternBinary = function(currentCardArray, BallDraw) {
+cardBinary.cardPatternBinary = function (currentCardArray, BallDraw) {
   cardBinary.currentCardBinary = [];
-  currentCardArray.forEach(cardNum => {
-    if(BallDraw.includes(cardNum)) {
+  currentCardArray.forEach((cardNum) => {
+    if (BallDraw.includes(cardNum)) {
       cardBinary.currentCardBinary.push(1);
     } else {
       cardBinary.currentCardBinary.push(0);
     }
-  });  
+  });
   return cardBinary.currentCardBinary;
-}
+};
 
 module.exports = cardBinary;
-
 
 // Test logs
 // cardPatternBinary(playerCard, interimDraw);
