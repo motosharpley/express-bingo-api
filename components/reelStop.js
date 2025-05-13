@@ -1,9 +1,9 @@
-const rng = require("./RNG");
+const { getRandomNumber } = require('./RNG');
 
 const reelStop = {};
 
 reelStop.getReelStop = function (minStop, maxStop) {
-  let reelIndex = rng.getRandomNumber(minStop, maxStop);
+  let reelIndex = getRandomNumber(minStop, maxStop);
 
   return reelIndex;
 };
