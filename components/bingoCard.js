@@ -1,17 +1,16 @@
 const bingoCard = {};
+const { getRandomNumber } = require('./RNG');
 
 let usedCardNums = new Array(75);
 bingoCard.currentCardArray = new Array();
 
 function getNewNum() {
-  return Math.floor(Math.random() * 15 + 1);
+  return getRandomNumber(1, 15);
 }
 
 bingoCard.anotherCard = function () {
   bingoCard.currentCardArray = [];
-  for (var i = 0; i < usedCardNums.length; i++) {
-    usedCardNums[i] = false;
-  }
+  usedCardNums = new Array(75).fill(false);
 
   bingoCard.newCard();
   // console.log(usedCardNums);
@@ -19,7 +18,7 @@ bingoCard.anotherCard = function () {
 };
 
 bingoCard.newCard = function () {
-  for (var i = 0; i < 25; i++) {
+  for (let i = 0; i < 25; i++) {
     setSquare(i);
   }
 };
@@ -51,11 +50,11 @@ function setSquare(thisSquare) {
     4,
     4,
     4,
-    4,
+    4
   ); // Column format
 
   let colBasis = colPlace[thisSquare] * 15;
-  let newNum = colBasis + getNewNum();
+  let newNum; // = colBasis + getNewNum();
 
   do {
     newNum = colBasis + getNewNum();
