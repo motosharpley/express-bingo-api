@@ -1,20 +1,29 @@
-// Symbol	            Type	5	    4	    3	    2
-// *1* FrankenCash 2	Wild	5000    100	    25	    10
-// *2* Frank	        Line	300	    50	    10
-// *3* Bride	        Line	300	    50	    10
-// *4* Doctor	        Line	300     50	    10
-// *5* Igor	            Line	300	    50	    10
-// *6* Chest	        Line	150	    30	    5
-// *7* Tower	        Line	100	    20	    5
-// *8* Brain	        Line	100	    15	    5
+// Symbol	Type	  5	     4	    3	    2
+// *1* 		Wild	5000    100	   25	    10
+// *2* 		Line	300	    50	   10
+// *3* 		Line	300	    50	   10
+// *4* 		Line	300     50	   10
+// *5* 		Line	300	    50	   10
+// *6* 		Line	150	    30	   5
+// *7* 		Line	100	    20	   5
+// *8* 		Line	100	    15	   5
 // *11* Pick Scat
 // *12* FS Scat
 
-const lineEval = require("./lineEval");
-const fs = require("fs");
+const lineEval = require('./lineEval');
+const fs = require('fs');
 
 const payEval = {};
 
+/**
+ * Evaluates the credits per line based on the spin results.
+ *
+ * This function calculates the payout for each line in the spin results
+ * by evaluating the symbol, hit count, and wild symbols. It also handles
+ * edge cases like multiple wins on the same line where the highest value win must be selected.
+ * It can also write sample files for bingo results if according to the condition specified at the top of the block.
+ * Look for the comment "******* Write Sample files for bingo *******" to find the start and end of this block.
+ */
 payEval.creditsPerLine = function () {
   lineEval.checkLineWins(lineEval.reelStrips);
   let linePay = 0;
@@ -69,7 +78,9 @@ payEval.creditsPerLine = function () {
         else if (hitcount == 5) linePay = 100;
         break;
     }
-    // CHECK FOR MULTIPLE WINS ON SAME LINE -- THIS IS AN EDGE CASE WHERE THE LINE STARTS WITH WILD SYMBOLS BUT COMPLETES A HIGHER VALUE SYMBOL WIN LATER ON IN LINE EVALUATION
+    // CHECK FOR MULTIPLE WINS ON SAME LINE
+    // -- THIS IS AN EDGE CASE WHERE THE LINE STARTS WITH WILD SYMBOLS
+    // -- BUT COMPLETES A HIGHER VALUE SYMBOL WIN LATER ON IN LINE EVALUATION
     for (let x = 2; x < lineEval.spinResults.length - 2; x++) {
       if (lineEval.spinResults[x][2] == currentLine) {
         if (lineEval.spinResults[x][6] > linePay) {
@@ -83,13 +94,13 @@ payEval.creditsPerLine = function () {
         }
       }
     }
-    lineEval.spinResults[i].push("line_pay", linePay);
+    lineEval.spinResults[i].push('line_pay', linePay);
   }
   // add up the final set of linePay values to get winTotal
   for (let x = 2; x < lineEval.spinResults.length - 2; x++) {
     winTotal += lineEval.spinResults[x][6];
   }
-  lineEval.spinResults.push(["win_total", winTotal]);
+  lineEval.spinResults.push(['win_total', winTotal]);
 
   // ******* Write Sample files for bingo *******
 
@@ -101,25 +112,25 @@ payEval.creditsPerLine = function () {
       lineEval.spinResults[lineEval.spinResults.length - 2][2] < 3
     ) {
       let reelstopfile = lineEval.spinResults[0];
-      let reelSTR = reelstopfile.join(" ");
+      let reelSTR = reelstopfile.join(' ');
 
       let fileResults = `2*SPIN|${winTotal}$${reelSTR}\n`;
       let pulltab = `basegame\t${winTotal}\n`;
       fs.writeFileSync(
         `./sampleFiles/${winTotal}.txt`,
         fileResults,
-        { flag: "a+" },
+        { flag: 'a+' },
         (err) => {
           if (err) throw err;
-        },
+        }
       );
       fs.writeFileSync(
         `./sampleFiles/pulltab_detail/${winTotal}.txt`,
         pulltab,
-        { flag: "a+" },
+        { flag: 'a+' },
         (err) => {
           if (err) throw err;
-        },
+        }
       );
     }
   }
