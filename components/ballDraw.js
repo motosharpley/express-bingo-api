@@ -1,7 +1,8 @@
 const ballDraw = {};
+const { getRandomNumber } = require('./RNG');
 
 function getNewBall() {
-  return Math.floor(Math.random() * 75 + 1);
+  return getRandomNumber(1, 75);
 }
 
 ballDraw.allBallsDrawn = new Array();
