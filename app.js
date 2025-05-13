@@ -31,6 +31,7 @@ app.get('/bingo-card', (req, res) => {
   res.send(bingoCard.currentCardArray);
 });
 
+// TODO: handle game reset or new game after coverall
 gameQueue.newBingoGame();
 let i = 0;
 app.get('/bingo-game', (req, res) => {
