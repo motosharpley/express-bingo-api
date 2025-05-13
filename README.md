@@ -7,8 +7,10 @@ This project is a prototype for a Bingo game engine built using Node.js and Expr
 - **Ball Draw**: Simulates the drawing of Bingo balls.
 - **Bingo Card Generation**: Generates Bingo cards for players.
 - **Game Queue**: Manages multiple Bingo games and their players.
-- **Line Evaluation**: Checks for winning lines in a Bingo game.
-- **Payout Evaluation**: Calculates credits per line based on game results.
+- **Pattern Evaluation**: Checks for winning patterns in a Bingo game.
+- **Class 3 Slot Game**: Evaluates line wins and calculates credits per line for a Class 3Slot Game
+- **Line Evaluation**: Checks for winning lines in a Class 3 Slot Game.
+- **Payout Evaluation**: Calculates credits per line based on game for Class 3 Slot Game results.
 
 ## Installation
 

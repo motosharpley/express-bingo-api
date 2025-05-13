@@ -45,6 +45,7 @@ app.get('/all-bingo-game', (req, res) => {
   g++;
 });
 
+// Class 3 Slot Game Multi Line with Scatter and Freespin Bonus Play
 app.get('/class-3', (req, res) => {
   // lineEval.checkLineWins();
   payEval.creditsPerLine();

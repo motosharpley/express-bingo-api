@@ -102,6 +102,7 @@ payEval.creditsPerLine = function () {
   }
   lineEval.spinResults.push(['win_total', winTotal]);
 
+  // TODO Extract this to a Helper Utility
   // ******* Write Sample files for bingo *******
 
   // Check for scatter wins to prevent writing bonus trigger results to base game result files
