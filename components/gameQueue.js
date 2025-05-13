@@ -1,8 +1,8 @@
 // Import modules
-const bingoCard = require("./bingoCard");
-const ballDraw = require("./ballDraw");
-const cardBinary = require("./cardBinary");
-const patternEval = require("./patternEval");
+const bingoCard = require('./bingoCard');
+const ballDraw = require('./ballDraw');
+const cardBinary = require('./cardBinary');
+const patternEval = require('./patternEval');
 
 const gameQueue = {};
 let gameIndex = 1;
@@ -11,8 +11,10 @@ gameQueue.games = [];
 
 gameQueue.newBingoGame = function () {
   // Draw All Balls
-  let allBallsDrawn = ballDraw.allBallsDrawn;
+  ballDraw.resetBallPool(); // Reset the ball pool to ensure a fresh shuffle
   ballDraw.drawAllBalls();
+  let allBallsDrawn = ballDraw.allBallsDrawn;
+
   // Interim Game Draw
   let interimDraw = ballDraw.interimGameDraw;
   // Initialize new game & build queue
