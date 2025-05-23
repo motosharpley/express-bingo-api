@@ -1,23 +1,24 @@
-# Bingo Engine Prototype
+# Casino Game API Prototype
 
-This project is a prototype for a Bingo game engine built using Node.js and Express. It provides several endpoints to simulate and interact with various components of a Bingo game, such as drawing balls, generating Bingo cards, and evaluating game results.
+This project is a prototype for a Casino Game API built using Node.js and Express. It provides endpoints to simulate and interact with various casino games, including Bingo and Class 3 Slot games, and is designed to be extensible for additional game types in the future.
 
 ## Features
 
-- **Ball Draw**: Simulates the drawing of Bingo balls.
+- **Bingo Ball Draw**: Simulates the drawing of Bingo balls.
 - **Bingo Card Generation**: Generates Bingo cards for players.
 - **Game Queue**: Manages multiple Bingo games and their players.
 - **Pattern Evaluation**: Checks for winning patterns in a Bingo game.
-- **Class 3 Slot Game**: Evaluates line wins and calculates credits per line for a Class 3Slot Game
+- **Class 3 Slot Game**: Evaluates line wins and calculates credits per line for a Class 3 Slot Game.
 - **Line Evaluation**: Checks for winning lines in a Class 3 Slot Game.
-- **Payout Evaluation**: Calculates credits per line based on game for Class 3 Slot Game results.
+- **Payout Evaluation**: Calculates credits per line based on game results for Class 3 Slot Game.
+- **Extensible Architecture**: Designed to support additional casino games and features as the project grows.
 
 ## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/motosharpley/express-bingo-api.git
+   git clone https://github.com/motosharpley/express-casino-game-api.git
    ```
 
 2. Navigate to the project directory:
@@ -33,10 +34,10 @@ This project is a prototype for a Bingo game engine built using Node.js and Expr
 
 ## Usage
 
-1. Start the server:
+1. Start the dev server:
 
    ```bash
-   node app.js
+   npm run dev
    ```
 
 2. Access the following endpoints:
@@ -46,7 +47,7 @@ This project is a prototype for a Bingo game engine built using Node.js and Expr
    - `GET /bingo-card`: Generates a new Bingo card and returns it.
    - `GET /bingo-game`: Retrieves player information for the current Bingo game.
    - `GET /all-bingo-game`: Retrieves details of all Bingo games.
-   - `GET /class-3`: Evaluates line wins and calculates credits per line.
+   - `GET /class-3`: Evaluates line wins and calculates credits per line for the Class 3 Slot Game.
 
 3. The server runs on `http://localhost:3000` by default.
 
@@ -58,7 +59,7 @@ This project is a prototype for a Bingo game engine built using Node.js and Expr
 ## Folder Structure
 
 - `app.js`: Main entry point of the application.
-- `components/`: Contains modules for various Bingo game functionalities.
+- `components/`: Contains modules for various casino game functionalities.
 
 ## License
 
